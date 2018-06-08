@@ -1,11 +1,11 @@
-import React from 'react';
-import { hot } from 'react-hot-loader';
+import React from "react";
+import { hot } from "react-hot-loader";
 
-if (process.env.NODE_ENV !== 'production') {
-  const {whyDidYouUpdate} = require('why-did-you-update');
+if (process.env.NODE_ENV !== "production") {
+  const { whyDidYouUpdate } = require("why-did-you-update");
   whyDidYouUpdate(React);
 }
 
-const App = () => <div>Hello RocketJourney World!</div>
+const App = () => <div>Hello RocketJourney World!</div>;
 
-export default hot(module)(App)
+export default hot(module)(App);

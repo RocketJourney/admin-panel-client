@@ -4,3 +4,4 @@ node_modules/
 .idea/
 # Project
 dist/
+.DS_Store
