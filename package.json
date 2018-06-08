@@ -26,6 +26,7 @@
     "@storybook/react": "^3.4.6",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
@@ -42,6 +43,8 @@
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "why-did-you-update": "^0.1.1"
   }
 }
