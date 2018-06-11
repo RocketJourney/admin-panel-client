@@ -1,12 +1,14 @@
 import React from "react";
 
 import Button from "../Button";
+import Navbar from '../Navbar';
 
 import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
 
 export default () => (
   <section id="login">
+    <Navbar logo={logo} />
     <div className="row">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12">
         <img className={styles.logo} src={logo} alt="RJ" />
