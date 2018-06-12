@@ -1,12 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
-const htmlPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
-});
-
 module.exports = {
+  entry: "./src/index.js",
+  output: {
+    filename: "bundle.[hash].js"
+  },
   module: {
     rules: [
       {
@@ -57,5 +56,15 @@ module.exports = {
   resolve: {
     extensions: [".less", ".js", ".jsx", ".react.js"]
   },
-  plugins: [htmlPlugin]
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "public/index.html"
+    })
+  ],
+  devServer: {
+    host: "localhost",
+    port: 3000,
+    historyApiFallback: true,
+    open: true
+  }
 };

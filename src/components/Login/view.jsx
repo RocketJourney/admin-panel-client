@@ -7,32 +7,9 @@ import RightSideItems from "../Navbar/RightSideItems";
 import LeftSideItems from "../Navbar/LeftSideItems";
 
 import styles from "./styles.less";
-import logo from "../../img/group-copy.svg";
 
 export default () => (
   <section id="login">
-    <Navbar logo={logo}>
-      <LeftSideItems>
-        <NavbarItem>
-          <a className="nav-option" href="#">
-            Feedback
-          </a>
-        </NavbarItem>
-        <NavbarItem>
-          <a className="nav-option" href="#">
-            Feedback
-          </a>
-        </NavbarItem>
-        <NavbarItem>
-          <a className="nav-option" href="#">
-            Feedback
-          </a>
-        </NavbarItem>
-      </LeftSideItems>
-      <RightSideItems>
-        <button className="nav-option">signout</button>
-      </RightSideItems>
-    </Navbar>
     <div className="row">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12">
         <img className={styles.logo} src={logo} alt="RJ" />
