@@ -1,11 +1,8 @@
 import React from "react";
 
 import Button from "../Button";
-import Navbar from "../Navbar";
-import NavbarItem from "../Navbar/NavbarItem";
-import RightSideItems from "../Navbar/RightSideItems";
-import LeftSideItems from "../Navbar/LeftSideItems";
 
+import logo from "../../img/group-copy.svg";
 import styles from "./styles.less";
 
 export default () => (
