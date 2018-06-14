@@ -8,7 +8,7 @@ const Th = ({ children, filter, filterColor, filterAction }) => {
 
   return (
     <th className={styles.th}>
-      <i className={`fas fa-sort-down ${styles[color]}`} />
+      {filter === true && <i className={`fas fa-sort-down ${styles[color]}`} />}
       {children}
     </th>
   );

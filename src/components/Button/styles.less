@@ -2,14 +2,9 @@
 
 .button {
   border: none;
-  border-radius: 15px;
   cursor: pointer;
   display: block;
   font-family: "Montserrat";
-  font-size: 22px;
-  height: 60px;
-  line-height: 28px;
-  padding: 16px 30px;
   width: 100%;
   &:focus {
     outline: none;
@@ -207,6 +202,19 @@
       letter-spacing: normal;
       text-align: center;
     }
+  }
+  &.normal {
+    border-radius: 15px;
+    height: 60px;
+    font-size: 22px;
+    line-height: 28px;
+    padding: 16px 30px;
+  }
+  &.small {
+    border-radius: 8px;
+    height: 30px;
+    font-size: 13px;
+    line-height: normal;
   }
 }
 .loader {
