@@ -10,7 +10,7 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = () => (
+const View = ({ checkinRequests }) => (
   <div id="checkin-request" className={styles.view}>
     <div className="row">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -31,20 +31,20 @@ const View = () => (
             <Th />
           </Thead>
           <Tbody>
-            <tr>
-              <Td color="gray">a minute ago</Td>
-              <Td>Capital Fitness Colima</Td>
-              <Td>Otra razón</Td>
-              <Td>JLN</Td>
-              <Td>2018-09-09 05:30:00</Td>
-              <Td>
-                <div id="aglo" className={styles.bottonWrapper}>
+            {checkinRequests.map(checkinRequest => (
+              <tr key={checkinRequest.id}>
+                <Td color="gray">{checkinRequest.inserted_at}</Td>
+                <Td>{checkinRequest.name}</Td>
+                <Td>{checkinRequest.reason}</Td>
+                <Td>{checkinRequest.user_name}</Td>
+                <Td>{checkinRequest.local_date}</Td>
+                <Td>
                   <Button size="small" color="yellow">
                     Resolves
                   </Button>
-                </div>
-              </Td>
-            </tr>
+                </Td>
+              </tr>
+            ))}
           </Tbody>
         </Table>
       </div>
