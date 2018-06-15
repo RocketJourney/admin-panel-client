@@ -59,7 +59,8 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       template: "public/index.html"
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   devServer: {
     host: "localhost",
