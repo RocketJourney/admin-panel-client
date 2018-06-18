@@ -1,9 +1,15 @@
 const loggedIn = () => !!localStorage.adminPanelToken;
 const getToken = () => localStorage.adminPanelToken;
 
-export default {
-  getToken,
-  loggedIn
+const logOut = () => {
+  localStorage.removeItem("adminPanelToken");
+  localStorage.removeItem("adminPanelTokenemail");
 };
 
-export { getToken, loggedIn };
+export default {
+  getToken,
+  loggedIn,
+  logOut
+};
+
+export { getToken, loggedIn, logOut };

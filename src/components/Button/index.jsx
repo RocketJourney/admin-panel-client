@@ -5,7 +5,18 @@ import styles from "./styles.less";
 
 import loader from "./img/spinner.svg";
 
-const Button = ({ children, color, state, type, disabled, loading, size }) => {
+const Button = props => {
+  const {
+    children,
+    color,
+    state,
+    type,
+    disabled,
+    loading,
+    size,
+    ...rest
+  } = props;
+
   if (loading) {
     return <img className={styles.loader} src={loader} alt="loader" />;
   }
@@ -15,6 +26,7 @@ const Button = ({ children, color, state, type, disabled, loading, size }) => {
         styles[size]
       }`}
       disabled={disabled}
+      {...rest}
     >
       {children}
     </button>

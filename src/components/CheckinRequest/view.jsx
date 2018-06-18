@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../Button";
+import CheckinRequestForm from "./CheckinRequestForm";
 import Table from "../Table";
 import Thead from "../Table/Thead";
 import Tbody from "../Table/Tbody";
@@ -10,7 +10,7 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = ({ checkinRequests }) => (
+const View = ({ checkinRequests, clubs, spots }) => (
   <div id="checkin-request" className={styles.view}>
     <div className="row">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -39,9 +39,11 @@ const View = ({ checkinRequests }) => (
                 <Td>{checkinRequest.user_name}</Td>
                 <Td>{checkinRequest.local_date}</Td>
                 <Td>
-                  <Button size="small" color="yellow">
-                    Resolves
-                  </Button>
+                  <CheckinRequestForm
+                    checkinRequest={checkinRequest}
+                    clubs={clubs}
+                    spots={spots}
+                  />
                 </Td>
               </tr>
             ))}
