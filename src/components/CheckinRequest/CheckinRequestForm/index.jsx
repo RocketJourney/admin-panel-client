@@ -2,6 +2,7 @@ import React from "react";
 
 import CheckinRequestHeader from "./CheckinRequestHeader";
 import CheckinRequestFooter from "./CheckinRequestFooter";
+import CheckinRequestBody from "./CheckinRequestBody";
 import Button from "../../Button";
 
 import styles from "./styles.less";
@@ -28,7 +29,9 @@ const CheckinRequestForm = ({ clubs, spots, checkinRequest }) => (
       <div className={`modal-dialog ${styles.modalDialog}`} role="document">
         <div className={`modal-content ${styles.modalContent}`}>
           <CheckinRequestHeader checkinRequest={checkinRequest} />
-          <div className="modal-body">...</div>
+          <div className="modal-body">
+            <CheckinRequestBody checkinRequest={checkinRequest} />
+          </div>
           <CheckinRequestFooter user={checkinRequest.user} />
         </div>
       </div>

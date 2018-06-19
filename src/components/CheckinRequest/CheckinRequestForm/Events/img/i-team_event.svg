@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>i-team_event</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Events" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-61.000000, -324.000000)">
+        <g id="spot-logo" transform="translate(61.000000, 111.000000)" fill="#CCCCCC">
+            <path d="M4.69333333,213 L15.3066667,213 C17.8987231,213 20,215.101277 20,217.693333 L20,228.306667 C20,230.898723 17.8987231,233 15.3066667,233 L4.69333333,233 C2.10127691,233 2.35671807e-15,230.898723 8.8817842e-16,228.306667 L8.8817842e-16,217.693333 C5.70743059e-16,215.101277 2.10127691,213 4.69333333,213 Z M11.0643777,219.93133 L13.8969957,219.93133 L13.8969957,218 L6,218 L6,219.93133 L8.83261803,219.93133 L8.83261803,228 L11.0643777,228 L11.0643777,219.93133 Z" id="i-team_event"></path>
+        </g>
+    </g>
+</svg>
