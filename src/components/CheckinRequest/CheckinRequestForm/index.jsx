@@ -30,7 +30,11 @@ const CheckinRequestForm = ({ clubs, spots, checkinRequest }) => (
         <div className={`modal-content ${styles.modalContent}`}>
           <CheckinRequestHeader checkinRequest={checkinRequest} />
           <div className="modal-body">
-            <CheckinRequestBody checkinRequest={checkinRequest} />
+            <CheckinRequestBody
+              checkinRequest={checkinRequest}
+              clubs={clubs}
+              spots={spots}
+            />
           </div>
           <CheckinRequestFooter user={checkinRequest.user} />
         </div>

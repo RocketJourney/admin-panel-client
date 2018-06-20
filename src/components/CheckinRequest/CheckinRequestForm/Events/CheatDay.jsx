@@ -37,7 +37,7 @@ const CheatDay = ({
       <div className={`col-lg-3 col-md-3 col-sm-12 ${styles["edit-actions"]}`}>
         <i
           onClick={updateEvent}
-          className={`fa fa-pencil ${styles["update-button"]}`}
+          className={`fas fa-pencil-alt ${styles["update-button"]}`}
           aria-hidden="true"
         />
         <i

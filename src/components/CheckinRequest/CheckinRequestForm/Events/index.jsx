@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 import CheckIn from "./CheckIn";
 import WeekSeparator from "./WeekSeparator";
@@ -22,35 +21,7 @@ import strava from "./img/i-app-strava.png";
 export default class Events extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      events: props.events
-    };
     this.renderEvents = this.renderEvents.bind(this);
-    this.deleteEvent = this.deleteEvent.bind(this);
-    this.showUpdateForm = this.showUpdateForm.bind(this);
-  }
-
-  deleteEvent(id) {
-    axios({ method: "DELETE", url: `/api/v1/events/${id}` })
-      .then(() => {
-        const events = this.state.events.filter(event => event.id !== id);
-        this.setState({ events: events });
-        this.props.removeEvent(id);
-      })
-      .catch(err => {
-        console.warn(err);
-      });
-  }
-
-  showUpdateForm(id) {
-    const event = this.state.events.filter(event => event.id === id);
-    this.props.showEditForm(event);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.events !== this.props.events) {
-      this.setState({ events: this.props.events });
-    }
   }
 
   renderEvents(event) {
@@ -59,8 +30,8 @@ export default class Events extends Component {
         return (
           <CheckIn
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             key={event.id}
             badgeUrl={event.badge_url}
             name={event.name}
@@ -71,8 +42,8 @@ export default class Events extends Component {
         return (
           <WeekSeparator
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             key={event.id}
             insertedAt={event.inserted_at}
             weeks={event.duration}
@@ -83,8 +54,8 @@ export default class Events extends Component {
         return (
           <RjRun
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             badgeUrl={run}
             key={event.id}
             insertedAt={event.inserted_at}
@@ -97,8 +68,8 @@ export default class Events extends Component {
           <CheatDay
             key={event.id}
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             badgeUrl={cheatDay}
             insertedAt={event.inserted_at}
             duration={event.duration}
@@ -108,8 +79,8 @@ export default class Events extends Component {
         return (
           <StreakStarted
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             key={event.id}
             insertedAt={event.inserted_at}
           />
@@ -118,8 +89,8 @@ export default class Events extends Component {
         return (
           <StreakLost
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             key={event.id}
             insertedAt={event.inserted_at}
           />
@@ -128,8 +99,8 @@ export default class Events extends Component {
         return (
           <TeamEvents
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             badgeUrl={teamEvent}
             description={event.description}
             name={event.name}
@@ -141,8 +112,8 @@ export default class Events extends Component {
         return (
           <StravaBike
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             badgeUrl={bike}
             key={event.id}
             strava={strava}
@@ -155,8 +126,8 @@ export default class Events extends Component {
         return (
           <StravaRun
             id={event.id}
-            updateAction={this.showUpdateForm}
-            deleteAction={this.deleteEvent}
+            updateAction={this.props.showUpdateForm}
+            deleteAction={this.props.deleteEvent}
             badgeUrl={run}
             key={event.id}
             strava={strava}
