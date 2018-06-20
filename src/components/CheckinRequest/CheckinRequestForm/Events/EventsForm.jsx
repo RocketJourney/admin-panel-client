@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import DayPicker from "react-day-picker";
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import axios from "axios";
+
+import request from "../../../../helpers/request";
 
 import Button from "../../../Button";
 import Input from "../../../Input";
@@ -166,7 +167,8 @@ export default class EventsForm extends Component {
         duration: this.state.duration.value
       }
     };
-    axios({ method: "POST", url: "/api/v1/events", data })
+
+    request("/events", { method: "POST", data: data })
       .then(() => {
         this.props.fetch_events();
         this.props.closeAfterUpdateEvent();
@@ -191,10 +193,9 @@ export default class EventsForm extends Component {
     if (data["event"]["spot_id"] === "0" || data["event"]["spot_id"] === 0) {
       data["event"]["spot_id"] = null;
     }
-    axios({
+    request(`/events/${this.props.eventSelected.id}`, {
       method: "PUT",
-      url: `/api/v1/events/${this.props.eventSelected.id}`,
-      data
+      data: data
     })
       .then(() => {
         this.props.fetch_events();
