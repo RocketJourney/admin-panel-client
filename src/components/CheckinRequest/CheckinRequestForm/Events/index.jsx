@@ -149,7 +149,10 @@ export default class Events extends Component {
             <p className={styles["gray-bold-title"]}>Events</p>
           </div>
           <div className="col-lg-7 col-md-7 col-sm-12">
-            <button className={styles.addEventButton} onClick={() => ""}>
+            <button
+              className={styles.addEventButton}
+              onClick={this.props.newEvent}
+            >
               <i className="fa fa-plus-circle" />
               Add Event
             </button>

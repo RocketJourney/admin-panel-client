@@ -16,6 +16,8 @@ export default class CheckinRequestBody extends Component {
     this.closeEditForm = this.closeEditForm.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
     this.showUpdateForm = this.showUpdateForm.bind(this);
+    this.showNewEventForm = this.showNewEventForm.bind(this);
+    this.refreshEvents = this.refreshEvents.bind(this);
   }
 
   closeEditForm() {
@@ -23,11 +25,24 @@ export default class CheckinRequestBody extends Component {
   }
 
   showUpdateForm(id) {
-    console.log(id);
     const [event] = this.state.events.filter(event => event.id === id);
-    console.log(events);
-    console.log(event);
     this.setState({ eventSelected: event, showEventForm: true });
+  }
+
+  refreshEvents(events) {
+    this.setState({ events });
+  }
+
+  showNewEventForm() {
+    const eventSelected = {
+      id: undefined,
+      user_id: this.props.checkinRequest.user.user_id,
+      event_type_id: 1,
+      club_id: this.props.checkinRequest.club.checkinClub,
+      spot_id: this.props.checkinRequest.spot.id,
+      inserted_at: this.props.checkinRequest.local_date
+    };
+    this.setState({ showEventForm: true, eventSelected });
   }
 
   deleteEvent(id) {
@@ -54,11 +69,13 @@ export default class CheckinRequestBody extends Component {
             events={this.state.events}
             deleteEvent={this.deleteEvent}
             showUpdateForm={this.showUpdateForm}
+            newEvent={this.showNewEventForm}
           />
         </div>
         <div className="col-lg-8 col-md-8 col-sm-12">
           {this.state.showEventForm === true && (
             <EventsForm
+              refreshEvents={this.refreshEvents}
               checkinSpotName={this.props.checkinRequest.spot.name}
               checkinLocal={this.props.checkinRequest.local_date}
               checkinClub={this.props.checkinRequest.club.id}
@@ -68,7 +85,7 @@ export default class CheckinRequestBody extends Component {
               eventSelected={this.state.eventSelected}
               closeForm={this.closeEditForm}
               closeAfterUpdateEvent={this.closeEditForm}
-              userId={0}
+              userId={this.props.checkinRequest.user.user_id}
               fetch_events={() => "s"}
             />
           )}

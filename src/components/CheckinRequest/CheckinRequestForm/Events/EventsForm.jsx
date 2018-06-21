@@ -169,8 +169,8 @@ export default class EventsForm extends Component {
     };
 
     request("/events", { method: "POST", data: data })
-      .then(() => {
-        this.props.fetch_events();
+      .then(res => {
+        this.props.refreshEvents(res.data.data);
         this.props.closeAfterUpdateEvent();
       })
       .catch(err => {
@@ -197,8 +197,8 @@ export default class EventsForm extends Component {
       method: "PUT",
       data: data
     })
-      .then(() => {
-        this.props.fetch_events();
+      .then(res => {
+        this.props.refreshEvents(res.data.data);
         this.props.closeAfterUpdateEvent();
       })
       .catch(err => {
