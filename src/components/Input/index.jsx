@@ -15,7 +15,11 @@ const Input = ({
   defaultChecked
 }) => (
   <div className="form-group">
-    {labelText.length > 0 && <label htmlFor={id}>{labelText}</label>}
+    {labelText.length > 0 && (
+      <label className={styles.label} htmlFor={id}>
+        {labelText}
+      </label>
+    )}
     <input
       id={id}
       placeholder={placeholder}

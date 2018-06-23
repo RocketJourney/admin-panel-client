@@ -4,7 +4,7 @@ import Button from "../../Button";
 
 import styles from "./styles.less";
 
-const CheckinRequestHeader = ({ checkinRequest }) => (
+const CheckinRequestHeader = ({ checkinRequest, sendData }) => (
   <div className={`modal-header row no-gutters ${styles.modalHeader}`}>
     <div className="col-md-7 col-lg-7 col-sm-12 col-12">
       <h5 className={`modal-title ${styles.modalTitle}`}>
@@ -31,7 +31,7 @@ const CheckinRequestHeader = ({ checkinRequest }) => (
     <div
       className={`col-lg-2 col-md-2 col-sm-12 col-12 ${styles.headerButtons}`}
     >
-      <Button color="green" size="small">
+      <Button color="green" size="small" onClick={sendData}>
         Update
       </Button>
     </div>
