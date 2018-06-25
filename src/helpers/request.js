@@ -14,7 +14,7 @@ function request(
   );
   const request = buildRequest(
     method,
-    `http://localhost:4000/api/v1${url}`,
+    `http://159.65.191.154:4000/api/v1${url}`,
     data,
     headers
   );
