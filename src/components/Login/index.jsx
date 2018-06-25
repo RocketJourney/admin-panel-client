@@ -37,7 +37,7 @@ export default class Login extends Component {
   login(e) {
     e.preventDefault();
     axios
-      .post(`${this.domain}/v1/auth`, {
+      .post("/auth", {
         email: this.state.email,
         password: this.state.password
       })
