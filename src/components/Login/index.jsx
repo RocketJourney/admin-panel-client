@@ -48,7 +48,7 @@ export default class Login extends Component {
       })
       .catch(err => {
         console.warn(err);
-        alert("Invalid user/password llllll");
+        alert("Invalid user/password");
       });
   }
 

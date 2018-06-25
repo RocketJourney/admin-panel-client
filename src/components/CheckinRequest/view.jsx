@@ -54,7 +54,9 @@ const View = ({ checkinRequests, clubs, spots, openNextCheckin }) => (
           </Table>
         )}
 
-        {checkinRequests.length === 0 && <p>No hay checkins pendientes o/</p>}
+        {checkinRequests.length === 0 && (
+          <p className={styles.noCheckins}>No hay checkins pendientes o/</p>
+        )}
       </div>
     </div>
   </div>
