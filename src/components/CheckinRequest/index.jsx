@@ -19,6 +19,7 @@ export default class CheckinRequest extends Component {
       error: false
     };
     this.getClubsAndSpots = this.getClubsAndSpots.bind(this);
+    this.openNextCheckin = this.openNextCheckin.bind(this);
   }
 
   componentDidMount() {
@@ -47,10 +48,27 @@ export default class CheckinRequest extends Component {
       .catch(err => console.warn(err));
   }
 
+  openNextCheckin(prevIndex, prevModalId, prevCheckinId) {
+    $(prevModalId).modal("hide");
+    const checkins = this.state.checkinRequests.filter(checkin => {
+      return checkin.id !== prevCheckinId;
+    });
+    this.setState({ checkinRequests: checkins });
+    if (checkins.length > 0) {
+      console.log(`#${checkins[0].id}`);
+      $(`#${checkins[0].id}`).modal("show");
+    }
+  }
+
   render() {
     const { checkinRequests, clubs, spots } = this.state;
     return (
-      <View checkinRequests={checkinRequests} clubs={clubs} spots={spots} />
+      <View
+        checkinRequests={checkinRequests}
+        clubs={clubs}
+        openNextCheckin={this.openNextCheckin}
+        spots={spots}
+      />
     );
   }
 }

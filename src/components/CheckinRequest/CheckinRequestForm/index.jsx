@@ -114,6 +114,9 @@ export default class CheckinRequestForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
     this.sendData = this.sendData.bind(this);
+    this.nextCheckin = this.nextCheckin.bind(this);
+    this.archiveRequest = this.archiveRequest.bind(this);
+    this.verifyCheckin = this.verifyCheckin.bind(this);
   }
 
   handleChange({ target: { name, value } }) {
@@ -202,8 +205,6 @@ export default class CheckinRequestForm extends Component {
       }
     };
 
-    console.log(data);
-
     request(`/check-in-requests/${this.state.requestId.value}`, {
       method: "PUT",
       data
@@ -249,10 +250,34 @@ export default class CheckinRequestForm extends Component {
             sunday: prevState.sunday
           };
         });
+        this.verifyCheckin();
+        this.nextCheckin();
       })
       .catch(err => {
+        console.log(err);
         console.log("ya fallo");
       });
+  }
+
+  nextCheckin() {
+    this.props.openNextCheckin(
+      this.props.index,
+      `#${this.props.checkinRequest.id}`,
+      this.props.checkinRequest.id
+    );
+  }
+
+  archiveRequest() {
+    this.verifyCheckin();
+    this.nextCheckin();
+  }
+
+  verifyCheckin() {
+    const data = { user_check_in_request: { verified: true } };
+    request(`/check-in-requests/${this.props.checkinRequest.id}`, {
+      method: "PATCH",
+      data
+    });
   }
 
   render() {
@@ -282,6 +307,7 @@ export default class CheckinRequestForm extends Component {
               <CheckinRequestHeader
                 checkinRequest={checkinRequest}
                 sendData={this.sendData}
+                archiveRequest={this.archiveRequest}
               />
               <div className="modal-body">
                 <CheckinRequestBody

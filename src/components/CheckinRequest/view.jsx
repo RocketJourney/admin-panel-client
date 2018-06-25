@@ -10,7 +10,7 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = ({ checkinRequests, clubs, spots }) => (
+const View = ({ checkinRequests, clubs, spots, openNextCheckin }) => (
   <div id="checkin-request" className={styles.view}>
     <div className="row">
       <div className="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -31,7 +31,7 @@ const View = ({ checkinRequests, clubs, spots }) => (
             <Th />
           </Thead>
           <Tbody>
-            {checkinRequests.map(checkinRequest => (
+            {checkinRequests.map((checkinRequest, index) => (
               <tr key={checkinRequest.id}>
                 <Td color="gray">{checkinRequest.inserted_at}</Td>
                 <Td>{checkinRequest.name}</Td>
@@ -40,8 +40,10 @@ const View = ({ checkinRequests, clubs, spots }) => (
                 <Td>{checkinRequest.local_date}</Td>
                 <Td>
                   <CheckinRequestForm
+                    checkinIndex={index}
                     checkinRequest={checkinRequest}
                     clubs={clubs}
+                    openNextCheckin={openNextCheckin}
                     spots={spots}
                   />
                 </Td>
