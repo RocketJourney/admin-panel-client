@@ -40,6 +40,7 @@ export default class AdminApp extends Component {
         </Navbar>
         <Switch>
           <Route exact path="/checkin-requests" component={CheckinRequest} />
+          <Route exact path="/" component={Login} />
         </Switch>
       </div>
     );
