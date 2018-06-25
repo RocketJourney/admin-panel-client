@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import View from "./view";
 import { loggedIn } from "../../helpers/auth";
-import { request } from "../../helpers/request";
+import request from "../../helpers/request";
 
 export default class Login extends Component {
   static propTypes = {};
@@ -36,9 +36,10 @@ export default class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    request("/auth", {
-      data: { email: this.state.email, password: this.state.password },
-      method: "POST"
+    console.log("aqui");
+    request("/auth/", {
+      method: "POST",
+      data: { email: this.state.email, password: this.state.password }
     })
       .then(res => {
         localStorage.adminPanelToken = res.data.data.jwt;
