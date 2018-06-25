@@ -37,7 +37,7 @@ export default class Login extends Component {
   login(e) {
     e.preventDefault();
     console.log("aqui");
-    request("/auth/", {
+    request("/auth", {
       method: "POST",
       data: { email: this.state.email, password: this.state.password }
     })
