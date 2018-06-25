@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 
 import View from "./view";
 import { loggedIn } from "../../helpers/auth";
+import { request } from "../../helpers/request";
 
 export default class Login extends Component {
   static propTypes = {};
@@ -36,11 +36,10 @@ export default class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    axios
-      .post("/auth", {
-        email: this.state.email,
-        password: this.state.password
-      })
+    request("/auth", {
+      data: { email: this.state.email, password: this.state.password },
+      method: "POST"
+    })
       .then(res => {
         localStorage.adminPanelToken = res.data.data.jwt;
         localStorage.adminPanelTokenemail = res.data.data.user;
