@@ -32,7 +32,6 @@ const CheckIn = ({
           ) : (
             <p className={styles.title}>{name}</p>
           )}
-          <p className={styles.title}>{name}</p>
           <p className={styles.date}>{insertedAt}</p>
         </div>
       </div>
