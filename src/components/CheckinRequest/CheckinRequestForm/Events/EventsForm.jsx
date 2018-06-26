@@ -143,7 +143,13 @@ export default class EventsForm extends Component {
     this.setState(prevState => {
       prevState.club.value = value;
       prevState.club.modified = !(value == prevState.club.originalValue);
-      return { club: prevState.club, spots, disabled: false };
+      prevState.spot.value = spots[0].value;
+      return {
+        club: prevState.club,
+        spots,
+        disabled: false,
+        spot: prevState.spot
+      };
     });
   }
 
