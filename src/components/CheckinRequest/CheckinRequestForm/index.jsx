@@ -125,15 +125,8 @@ export default class CheckinRequestForm extends Component {
   handleChange({ target: { name, value } }) {
     const input = this.state[name];
     input.value = value;
-    console.log(value);
-    console.log(input.originalValue);
-    console.log(value == input.originalValue);
     input.modified = !(value == input.originalValue);
-    if (input.modified) {
-      this.setState({ [name]: input, editedForm: true });
-    } else {
-      this.setState({ [name]: input }, this.setEditedForm);
-    }
+    this.setState({ [name]: input, editedForm: true }, this.setEditedForm);
   }
 
   handleChangeCheckbox({ target: { name } }) {
@@ -162,7 +155,7 @@ export default class CheckinRequestForm extends Component {
       "saturday",
       "sunday"
     ];
-    const result = keys.filter(key => key.value != key.originalValue);
+    const result = keys.filter(key => key.modified);
     if (result.length) {
       this.setState({ editedForm: true });
     } else {
