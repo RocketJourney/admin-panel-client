@@ -13,6 +13,7 @@ export default class CheckinRequestForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFetchingEvents: false,
       events: props.checkinRequest.user.events,
       eventSelected: {},
       showEventForm: false,
@@ -117,13 +118,22 @@ export default class CheckinRequestForm extends Component {
     this.nextCheckin = this.nextCheckin.bind(this);
     this.archiveRequest = this.archiveRequest.bind(this);
     this.verifyCheckin = this.verifyCheckin.bind(this);
+    this.setIsFetchingEvents = this.setIsFetchingEvents.bind(this);
+    this.setEditedForm = this.setEditedForm.bind(this);
   }
 
   handleChange({ target: { name, value } }) {
     const input = this.state[name];
     input.value = value;
+    console.log(value);
+    console.log(input.originalValue);
+    console.log(value == input.originalValue);
     input.modified = !(value == input.originalValue);
-    this.setState({ [name]: input, editedForm: true });
+    if (input.modified) {
+      this.setState({ [name]: input, editedForm: true });
+    } else {
+      this.setState({ [name]: input }, this.setEditedForm);
+    }
   }
 
   handleChangeCheckbox({ target: { name } }) {
@@ -132,8 +142,32 @@ export default class CheckinRequestForm extends Component {
       prevState[name].modified = !(
         prevState[name].value === prevState[name].originalValue
       );
-      return { [name]: prevState[name], editedForm: true };
-    });
+      return { [name]: prevState[name] };
+    }, this.setEditedForm);
+  }
+
+  setEditedForm() {
+    const keys = [
+      "userName",
+      "statusId",
+      "thisWeek",
+      "weekDays",
+      "cheatProgress",
+      "dangerZone",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday"
+    ];
+    const result = keys.filter(key => key.value != key.originalValue);
+    if (result.length) {
+      this.setState({ editedForm: true });
+    } else {
+      this.setState({ editedForm: false });
+    }
   }
 
   closeEditForm() {
@@ -146,7 +180,7 @@ export default class CheckinRequestForm extends Component {
   }
 
   refreshEvents(events) {
-    this.setState({ events });
+    this.setState({ events, isFetchingEvents: false });
   }
 
   showNewEventForm() {
@@ -280,6 +314,10 @@ export default class CheckinRequestForm extends Component {
     });
   }
 
+  setIsFetchingEvents(value) {
+    this.setState({ isFetchingEvents: value });
+  }
+
   render() {
     const { checkinRequest, clubs, spots } = this.props;
 
@@ -312,6 +350,7 @@ export default class CheckinRequestForm extends Component {
               />
               <div className="modal-body">
                 <CheckinRequestBody
+                  setIsFetchingEvents={this.setIsFetchingEvents}
                   events={this.state.events}
                   closeEditForm={this.closeEditForm}
                   deleteEvent={this.deleteEvent}

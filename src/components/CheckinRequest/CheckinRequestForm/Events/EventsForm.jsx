@@ -154,6 +154,7 @@ export default class EventsForm extends Component {
   }
 
   sendData() {
+    this.props.setIsFetchingEvents(true);
     if (this.props.eventSelected.id === undefined) {
       this.createEvent();
     } else {
@@ -173,11 +174,10 @@ export default class EventsForm extends Component {
         duration: this.state.duration.value
       }
     };
-
+    this.props.closeAfterUpdateEvent();
     request("/events", { method: "POST", data: data })
       .then(res => {
         this.props.refreshEvents(res.data.data);
-        this.props.closeAfterUpdateEvent();
       })
       .catch(err => {
         console.warn(err);
@@ -199,13 +199,13 @@ export default class EventsForm extends Component {
     if (data["event"]["spot_id"] === "0" || data["event"]["spot_id"] === 0) {
       data["event"]["spot_id"] = null;
     }
+    this.props.closeAfterUpdateEvent();
     request(`/events/${this.props.eventSelected.id}`, {
       method: "PUT",
       data: data
     })
       .then(res => {
         this.props.refreshEvents(res.data.data);
-        this.props.closeAfterUpdateEvent();
       })
       .catch(err => {
         console.warn(err);

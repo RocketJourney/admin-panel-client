@@ -6,6 +6,9 @@ import Events from "./Events";
 import EventsForm from "./Events/EventsForm";
 import UserStatusForm from "./UserStatusForm";
 
+import styles from "./styles.less";
+import loader from "../../../img/spinner.svg";
+
 export default class CheckinRequestBody extends Component {
   constructor(props) {
     super(props);
@@ -25,22 +28,33 @@ export default class CheckinRequestBody extends Component {
       clubs,
       spots,
       showEventForm,
-      eventSelected
+      eventSelected,
+      isFetchingEvents,
+      setIsFetchingEvents
     } = this.props;
 
     return (
       <div className="row">
         <div className="col-lg-4 col-md-4 col-sm-12">
-          <Events
-            events={events}
-            deleteEvent={deleteEvent}
-            showUpdateForm={showUpdateForm}
-            newEvent={showNewEventForm}
-          />
+          {isFetchingEvents ? (
+            <img
+              className={`align-middle ${styles.loader}`}
+              src={loader}
+              alt="loading..."
+            />
+          ) : (
+            <Events
+              events={events}
+              deleteEvent={deleteEvent}
+              showUpdateForm={showUpdateForm}
+              newEvent={showNewEventForm}
+            />
+          )}
         </div>
         <div className="col-lg-8 col-md-8 col-sm-12">
           {showEventForm === true && (
             <EventsForm
+              setIsFetchingEvents={setIsFetchingEvents}
               refreshEvents={refreshEvents}
               checkinSpotName={checkinRequest.spot.name}
               checkinLocal={checkinRequest.local_date}
