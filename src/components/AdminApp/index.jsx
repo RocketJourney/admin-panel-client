@@ -10,6 +10,7 @@ import LeftSideItems from "../Navbar/LeftSideItems";
 import RightSideItems from "../Navbar/RightSideItems";
 import CheckinRequest from "../CheckinRequest";
 
+import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
 
 export default class AdminApp extends Component {
@@ -19,6 +20,13 @@ export default class AdminApp extends Component {
     super(props);
 
     this.state = {};
+    this.signOut = this.signOut.bind(this);
+  }
+
+  signOut() {
+    localStorage.removeItem("adminPanelToken");
+    localStorage.removeItem("adminPanelTokenemail");
+    this.props.history.push("/login");
   }
 
   render() {
@@ -36,7 +44,12 @@ export default class AdminApp extends Component {
             </NavbarItem>
           </LeftSideItems>
           <RightSideItems>
-            <button className="nav-option">signout</button>
+            <button
+              onClick={this.signOut}
+              className={`nav-option ${styles.sigout}`}
+            >
+              signout
+            </button>
           </RightSideItems>
         </Navbar>
         <Switch>

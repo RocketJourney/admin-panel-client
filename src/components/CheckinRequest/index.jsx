@@ -5,6 +5,8 @@ import View from "./view";
 
 import request from "../../helpers/request";
 import { logOut } from "../../helpers/auth";
+import loader from "../../img/spinner.svg";
+import styles from "./styles.less";
 
 export default class CheckinRequest extends Component {
   static propTypes = {};
@@ -16,6 +18,7 @@ export default class CheckinRequest extends Component {
       checkinRequests: [],
       clubs: [],
       spots: [],
+      fetchingData: true,
       error: false
     };
     this.getClubsAndSpots = this.getClubsAndSpots.bind(this);
@@ -42,7 +45,8 @@ export default class CheckinRequest extends Component {
       .then(res =>
         this.setState({
           clubs: res.data.data.clubs,
-          spots: res.data.data.spots
+          spots: res.data.data.spots,
+          fetchingData: false
         })
       )
       .catch(err => console.warn(err));
@@ -61,7 +65,11 @@ export default class CheckinRequest extends Component {
   }
 
   render() {
-    const { checkinRequests, clubs, spots } = this.state;
+    const { checkinRequests, clubs, spots, fetchingData } = this.state;
+
+    if (fetchingData) {
+      return <img className={styles.loader} src={loader} alt="loader" />;
+    }
     return (
       <View
         checkinRequests={checkinRequests}
