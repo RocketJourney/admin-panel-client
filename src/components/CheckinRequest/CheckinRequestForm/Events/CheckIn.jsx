@@ -27,6 +27,11 @@ const CheckIn = ({
           <img src={badgeUrl} alt="" />
         </div>
         <div>
+          {name.length > 25 ? (
+            <p className={styles.title}>{name.slice(0, -10)}</p>
+          ) : (
+            <p className={styles.title}>{name}</p>
+          )}
           <p className={styles.title}>{name}</p>
           <p className={styles.date}>{insertedAt}</p>
         </div>
