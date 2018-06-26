@@ -26,9 +26,10 @@ export default class CheckinRequest extends Component {
   }
 
   componentDidMount() {
+    this.getClubsAndSpots();
     request("/checkin-requests")
       .then(res =>
-        this.setState({ checkinRequests: res.data.data }, this.getClubsAndSpots)
+        this.setState({ checkinRequests: res.data.data, fetchingData: false })
       )
       .catch(err => {
         if (err.response.status === 401) {
@@ -45,8 +46,7 @@ export default class CheckinRequest extends Component {
       .then(res =>
         this.setState({
           clubs: res.data.data.clubs,
-          spots: res.data.data.spots,
-          fetchingData: false
+          spots: res.data.data.spots
         })
       )
       .catch(err => console.warn(err));
