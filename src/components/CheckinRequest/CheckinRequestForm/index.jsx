@@ -322,7 +322,7 @@ export default class CheckinRequestForm extends Component {
           data-toggle="modal"
           data-target={`#${checkinRequest.id}`}
         >
-          Resolves
+          Resolve
         </Button>
 
         <div

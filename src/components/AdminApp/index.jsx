@@ -39,7 +39,7 @@ export default class AdminApp extends Component {
               section="/checkin-requests"
             >
               <Link to="/checkin-requests" className="nav-option">
-                Checkin Requests
+                Check-in Requests
               </Link>
             </NavbarItem>
           </LeftSideItems>
