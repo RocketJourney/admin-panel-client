@@ -308,6 +308,7 @@ export default class CheckinRequestForm extends Component {
                 checkinRequest={checkinRequest}
                 sendData={this.sendData}
                 archiveRequest={this.archiveRequest}
+                editedForm={this.state.editedForm}
               />
               <div className="modal-body">
                 <CheckinRequestBody
