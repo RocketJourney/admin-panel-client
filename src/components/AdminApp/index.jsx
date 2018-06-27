@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Route, Switch, Link } from "react-router-dom";
 
-import Login from "../Login";
+// import Login from "../Login";
 import Navbar from "../Navbar";
 import NavbarItem from "../Navbar/NavbarItem";
 import LeftSideItems from "../Navbar/LeftSideItems";
@@ -54,7 +54,7 @@ export default class AdminApp extends Component {
         </Navbar>
         <Switch>
           <Route exact path="/checkin-requests" component={CheckinRequest} />
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={CheckinRequest} />
         </Switch>
       </div>
     );
