@@ -1,6 +1,6 @@
 {
-  "name": "Admin panel",
-  "version": "1.2.0",
+  "name": "admin-panel",
+  "version": "1.2.1",
   "description": "Admin panel for RocketJourney",
   "main": "index.js",
   "scripts": {
