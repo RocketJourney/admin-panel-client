@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-var HtmlWebPackPlugin = require("html-webpack-plugin");
-
-var htmlPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
-});
-=======
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require("path");
->>>>>>> release/1.1.0
 
 module.exports = {
   entry: "./src/index.js",
@@ -65,9 +56,6 @@ module.exports = {
   resolve: {
     extensions: [".less", ".js", ".jsx", ".react.js"]
   },
-<<<<<<< HEAD
-  plugins: [htmlPlugin]
-=======
   plugins: [
     new HtmlWebPackPlugin({
       template: "public/index.html"
@@ -79,5 +67,4 @@ module.exports = {
     historyApiFallback: true,
     open: true
   }
->>>>>>> release/1.1.0
 };
