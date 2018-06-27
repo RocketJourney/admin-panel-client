@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
-  "version": "1.0.0",
-  "description": "React boilerplate for rocketjourney",
+  "name": "Admin panel",
+  "version": "1.1.0",
+  "description": "Admin panel for RocketJourney",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RocketJourney/react-boilerplate.git"
+    "url": "git+https://github.com/RocketJourney/admin-panel-client.git"
   },
   "keywords": [
     "reactjs"
@@ -20,9 +20,9 @@
   "author": "gmora08",
   "license": "none",
   "bugs": {
-    "url": "https://github.com/RocketJourney/react-boilerplate/issues"
+    "url": "https://github.com/RocketJourney/admin-panel-client/issues"
   },
-  "homepage": "https://github.com/RocketJourney/react-boilerplate#readme",
+  "homepage": "https://github.com/RocketJourney/admin-panel-client#readme",
   "devDependencies": {
     "@storybook/react": "^3.4.6",
     "babel-core": "^6.26.3",
