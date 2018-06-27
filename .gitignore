@@ -5,3 +5,4 @@ node_modules/
 # Project
 dist/
 .DS_Store
+src/helpers/request.js
