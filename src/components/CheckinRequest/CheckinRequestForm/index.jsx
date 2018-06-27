@@ -162,6 +162,7 @@ export default class CheckinRequestForm extends Component {
       this.setState({ editedForm: false });
     }
   }
+  s;
 
   closeEditForm() {
     this.setState({ showEventForm: false, eventSelected: {} });
@@ -172,8 +173,22 @@ export default class CheckinRequestForm extends Component {
     this.setState({ eventSelected: event, showEventForm: true });
   }
 
-  refreshEvents(events) {
-    this.setState({ events, isFetchingEvents: false });
+  refreshEvents(event) {
+    const events = this.state.events;
+    events.push(event);
+    const sortedEvents = events.sort((first, second) => {
+      const firstDate = new Date(first.inserted_at);
+      const secondDate = new Date(second.inserted_at);
+
+      if (firstDate < secondDate) {
+        return 1;
+      } else if (firstDate > secondDate) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(sortedEvents);
+    this.setState({ sortedEvents, isFetchingEvents: false });
   }
 
   showNewEventForm() {
