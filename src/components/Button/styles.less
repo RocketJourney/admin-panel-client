@@ -1,0 +1,231 @@
+@import "./colors.less";
+
+.button {
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-family: "Montserrat";
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  &.fill {
+    &.blue {
+      &:hover {
+        background-color: @blue-button-hover;
+      }
+      &:active {
+        background-color: @blue-button-active;
+        outline: none;
+      }
+      &:disabled {
+        background-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      background-color: @blue-button;
+      color: @white-text;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    &.green {
+      &:hover {
+        background-color: @green-button-hover;
+      }
+      &:active {
+        background-color: @green-button-active;
+        outline: none;
+      }
+      &:disabled {
+        background-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      background-color: @green-button;
+      color: @white-text;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    &.red {
+      &:hover {
+        background-color: @red-button-hover;
+      }
+      &:active {
+        background-color: @red-button-active;
+        outline: none;
+      }
+      &:disabled {
+        background-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      background-color: @red-button;
+      color: @white-text;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    &.yellow {
+      &:hover {
+        background-color: @yellow-button-hover;
+      }
+      &:active {
+        background-color: @yellow-button-active;
+        outline: none;
+      }
+      &:disabled {
+        background-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      background-color: @yellow-button;
+      color: @black-text;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  }
+  &.border {
+    &.blue {
+      &:hover {
+        border-color: @blue-button-hover;
+        color: @blue-button-hover;
+      }
+      &:active {
+        border-color: @blue-button-active;
+        color: @blue-button-active;
+        outline: none;
+      }
+      &:disabled {
+        border-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      border: 1px solid;
+      background-color: transparent;
+      border-color: @blue-button;
+      color: @blue-button;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    &.green {
+      &:hover {
+        border-color: @green-button-hover;
+        color: @green-button-hover;
+      }
+      &:active {
+        border-color: @green-button-active;
+        color: @green-button-active;
+        outline: none;
+      }
+      &:disabled {
+        border-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      background-color: transparent;
+      border: 1px solid;
+      border-color: @green-button;
+      color: @green-button;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    &.red {
+      &:hover {
+        border-color: @red-button-hover;
+        color: @red-button-hover;
+      }
+      &:active {
+        border-color: @red-button-active;
+        color: @red-button-active;
+        outline: none;
+      }
+      &:disabled {
+        border-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      border: 1px solid @red-button;
+      background-color: transparent;
+      color: @red-button;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    &.yellow {
+      &:hover {
+        border-color: @yellow-button-hover;
+        color: @yellow-button-hover;
+      }
+      &:active {
+        border-color: @yellow-button-active;
+        color: @yellow-button-active;
+        outline: none;
+      }
+      &:disabled {
+        border-color: @disabled-button;
+        cursor: not-allowed;
+        color: @disabled-button-text;
+      }
+      background-color: transparent;
+      border: 1px solid @yellow-button;
+      color: @yellow-button;
+      opacity: 0.9;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  }
+  &.normal {
+    border-radius: 15px;
+    height: 60px;
+    font-size: 22px;
+    line-height: 28px;
+    padding: 16px 30px;
+  }
+  &.small {
+    border-radius: 8px;
+    height: 30px;
+    font-size: 13px;
+    line-height: normal;
+  }
+}
+.loader {
+  display: block;
+  height: 36px;
+  padding: 0.75em 0;
+  margin: 0 auto;
+  width: 36px;
+}
+
+.loaderWrapper {
+  height: 60px;
+  width: 100%;
+}

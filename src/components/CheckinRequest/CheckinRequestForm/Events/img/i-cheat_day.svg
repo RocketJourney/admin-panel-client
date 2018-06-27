@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>i-cheat_day</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="20" height="20" rx="4.69333333"></rect>
+    </defs>
+    <g id="Events" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-61.000000, -274.000000)">
+        <g id="spot-logo" transform="translate(61.000000, 111.000000)">
+            <g id="i-cheat_day" transform="translate(0.000000, 163.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Combined-Shape" fill="#50CAFE" xlink:href="#path-1"></use>
+                <path d="M13.3364116,11.6105495 C13.5621279,10.8887709 15.2027362,9.51276672 14.9791109,8.78990032 C14.7557078,8.06703801 12.6541367,7.95294048 12.0667214,7.50524411 C11.4793081,7.05743168 10.7331227,5.00144889 10.0061041,5.00000077 C9.27908548,4.99855264 8.52668146,7.05128203 7.93773451,7.49655855 C7.34889865,7.94183712 5.24714481,8.04727146 5.02131547,8.7691641 C4.79559721,9.49105878 6.43195728,10.8738529 6.6554715,11.5967173 C6.87898573,12.3195816 6.32612893,14.4407715 6.91365523,14.8884699 C7.50118154,15.3361683 9.26497235,14.1378548 9.99198904,14.139419 C10.7188946,14.1409812 12.4791896,15.3465781 13.0679144,14.9012974 C13.6568633,14.4559049 13.1105784,12.3326742 13.3364116,11.6105495 L13.3364116,11.6105495 L13.3364116,11.6105495 Z" id="path5" fill="#34A0CF" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
