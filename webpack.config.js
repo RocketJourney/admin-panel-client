@@ -1,22 +1,31 @@
+<<<<<<< HEAD
 var HtmlWebPackPlugin = require("html-webpack-plugin");
 
 var htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html"
 });
+=======
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require("path");
+>>>>>>> release/1.1.0
 
 module.exports = {
+  entry: "./src/index.js",
+  output: {
+    filename: "bundle.[hash].js"
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
       },
       {
-        test: /\.less$/,
+        test: /\.less?$/,
         use: [
           {
             loader: "style-loader"
@@ -56,5 +65,19 @@ module.exports = {
   resolve: {
     extensions: [".less", ".js", ".jsx", ".react.js"]
   },
+<<<<<<< HEAD
   plugins: [htmlPlugin]
+=======
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "public/index.html"
+    })
+  ],
+  devServer: {
+    host: "localhost",
+    port: 3000,
+    historyApiFallback: true,
+    open: true
+  }
+>>>>>>> release/1.1.0
 };
