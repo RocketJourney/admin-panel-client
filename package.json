@@ -1,5 +1,5 @@
 {
-  "name": "Admin panel",
+  "name": "admin-panel",
   "version": "1.2.0",
   "description": "Admin panel for RocketJourney",
   "main": "index.js",
