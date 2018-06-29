@@ -13,7 +13,7 @@ export default class CheckinRequestForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFetchingEvents: false,
+      isFetchingEvents: true,
       events: props.checkinRequest.user.events,
       eventSelected: {},
       showEventForm: false,
@@ -120,6 +120,7 @@ export default class CheckinRequestForm extends Component {
     this.verifyCheckin = this.verifyCheckin.bind(this);
     this.setIsFetchingEvents = this.setIsFetchingEvents.bind(this);
     this.setEditedForm = this.setEditedForm.bind(this);
+    this.fetchEvents = this.fetchEvents.bind(this);
   }
 
   handleChange({ target: { name, value } }) {
@@ -162,7 +163,15 @@ export default class CheckinRequestForm extends Component {
       this.setState({ editedForm: false });
     }
   }
-  s;
+
+  fetchEvents() {
+    this.setState({ isFetchingEvents: true });
+    request(`/users/${this.state.userId.value}/events`)
+      .then(res =>
+        this.setState({ events: res.data.data, isFetchingEvents: false })
+      )
+      .catch(err => console.warn(err));
+  }
 
   closeEditForm() {
     this.setState({ showEventForm: false, eventSelected: {} });
@@ -346,9 +355,11 @@ export default class CheckinRequestForm extends Component {
     return (
       <div>
         <Button
+          id={`checkin-${checkinRequest.id}`}
           size="small"
           color="yellow"
           data-toggle="modal"
+          onClick={this.fetchEvents}
           data-target={`#${checkinRequest.id}`}
         >
           Resolve

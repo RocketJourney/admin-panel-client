@@ -62,7 +62,8 @@ export default class CheckinRequest extends Component {
     this.setState({ checkinRequests: checkins });
     if (checkins.length > 0) {
       console.log(`#${checkins[0].id}`);
-      $(`#${checkins[0].id}`).modal("show");
+      $(`#checkin-${checkins[0].id}`).click();
+      // $(`#${checkins[0].id}`).modal("show");
     }
   }
 
