@@ -18,6 +18,7 @@ export default class Feedback extends Component {
       isFetchingData: true,
       feedback: []
     };
+    this.archive = this.archive.bind(this);
   }
 
   componentDidMount() {
@@ -35,11 +36,24 @@ export default class Feedback extends Component {
       });
   }
 
+  archive(id) {
+    const data = { feedback: { read: true } };
+    request(`/feedback/${id}`, { method: "PATCH", data })
+      .then(() => {
+        const feedback = this.state.feedback.filter(f => f.id != id);
+        this.setState({ feedback });
+      })
+      .catch(err => {
+        console.warn(err);
+        alert("Hubo un error");
+      });
+  }
+
   render() {
     const { isFetchingData, feedback } = this.state;
     if (isFetchingData) {
       return <Loader atl="cargando..." className={styles.loader} />;
     }
-    return <View feedback={feedback} />;
+    return <View feedback={feedback} archive={this.archive} />;
   }
 }
