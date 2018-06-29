@@ -173,22 +173,36 @@ export default class CheckinRequestForm extends Component {
     this.setState({ eventSelected: event, showEventForm: true });
   }
 
-  refreshEvents(event) {
+  refreshEvents(event, action) {
     const events = this.state.events;
-    events.push(event);
-    const sortedEvents = events.sort((first, second) => {
-      const firstDate = new Date(first.inserted_at);
-      const secondDate = new Date(second.inserted_at);
-
-      if (firstDate < secondDate) {
-        return 1;
-      } else if (firstDate > secondDate) {
-        return -1;
-      }
-      return 0;
-    });
-    console.log(sortedEvents);
-    this.setState({ sortedEvents, isFetchingEvents: false });
+    if (action === "new") {
+      events.push(event);
+      const sortedEvents = events.sort((first, second) => {
+        const firstDate = new Date(first.inserted_at);
+        const secondDate = new Date(second.inserted_at);
+        if (firstDate < secondDate) {
+          return 1;
+        } else if (firstDate > secondDate) {
+          return -1;
+        }
+        return 0;
+      });
+      this.setState({ events: sortedEvents, isFetchingEvents: false });
+    } else {
+      const filterEvents = events.filter(e => e.id !== event.id);
+      filterEvents.push(event);
+      const sortedEvents = filterEvents.sort((first, second) => {
+        const firstDate = new Date(first.inserted_at);
+        const secondDate = new Date(second.inserted_at);
+        if (firstDate < secondDate) {
+          return 1;
+        } else if (firstDate > secondDate) {
+          return -1;
+        }
+        return 0;
+      });
+      this.setState({ events: sortedEvents, isFetchingEvents: false });
+    }
   }
 
   showNewEventForm() {
