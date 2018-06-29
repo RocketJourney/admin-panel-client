@@ -10,6 +10,7 @@ import LeftSideItems from "../Navbar/LeftSideItems";
 import RightSideItems from "../Navbar/RightSideItems";
 import CheckinRequest from "../CheckinRequest";
 import Feedback from "../Feedback";
+import Leads from "../Leads";
 
 import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
@@ -51,6 +52,14 @@ export default class AdminApp extends Component {
                 Feedback
               </Link>
             </NavbarItem>
+            <NavbarItem
+              currentSection={this.props.location.pathname}
+              section="/leads"
+            >
+              <Link to="/leads" className="nav-option">
+                Leads
+              </Link>
+            </NavbarItem>
           </LeftSideItems>
           <RightSideItems>
             <button
@@ -64,6 +73,7 @@ export default class AdminApp extends Component {
         <Switch>
           <Route exact path="/checkin-requests" component={CheckinRequest} />
           <Route exact path="/feedback" component={Feedback} />
+          <Route exact path="/leads" component={Leads} />
           <Route exact path="/" component={CheckinRequest} />
         </Switch>
       </div>

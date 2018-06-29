@@ -28,7 +28,7 @@ const View = ({ archive, feedback }) => (
           <Table>
             <Thead>
               <Th filterColor="gray" filter>
-                Fate
+                Date
               </Th>
               <Th>UID</Th>
               <Th>Name</Th>
