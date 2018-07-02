@@ -1,4 +1,5 @@
 import React from "react";
+import Pagination from "react-js-pagination";
 
 import { parseHour } from "../../helpers/utils";
 
