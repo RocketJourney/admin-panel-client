@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 import request from "../../helpers/request";
 import { logOut } from "../../helpers/auth";
 
+import Loader from "../Loader";
 import View from "./view";
+
+import styles from "./styles.less";
 
 export default class Overview extends Component {
   static propTypes = {};
@@ -37,7 +40,7 @@ export default class Overview extends Component {
     return (
       <div>
         {this.state.isFetchingData ? (
-          <p>Cargando ...</p>
+          <Loader className={styles.loader} />
         ) : (
           <View data={this.state.data} />
         )}

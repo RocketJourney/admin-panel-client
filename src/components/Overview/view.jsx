@@ -25,60 +25,60 @@ const View = ({ data }) => (
     <div className="row">
       <div className="col-12 col-sm-12 col-md-3 col-lg-3">
         <h3 className={styles.number}>
-          {data.active_clubs}
+          {data.spots_main_metric}
           <small
             className={`${styles.deltaIndicator} ${
-              data.active_clubs_last_thirty_days > 0
+              data.spots_secondary_metric > 0
                 ? styles.deltaPositive
                 : styles.deltaNegative
             }`}
           >
-            {data.active_clubs_last_thirty_days}
+            {data.spots_secondary_metric}
           </small>
         </h3>
-        <span className={styles.numberLabel}>CLUBS</span>
+        <span className={styles.numberLabel}>SPOTS</span>
       </div>
       <div className="col-12 col-sm-12 col-md-3 col-lg-3">
         <h3 className={styles.number}>
-          {data.total_users}
+          {data.users_main_metric}
           <small
             className={`${styles.deltaIndicator} ${
-              data.total_users_last_thirty_days > 0
+              data.users_secondary_metric > 0
                 ? styles.deltaPositive
                 : styles.deltaNegative
             }`}
           >
-            {data.total_users_last_thirty_days}
+            {data.users_secondary_metric}
           </small>
         </h3>
         <span className={styles.numberLabel}>USERS</span>
       </div>
       <div className="col-12 col-sm-12 col-md-3 col-lg-3">
         <h3 className={styles.number}>
-          {data.active_users}
+          {data.active_users_main_metric}
           <small
             className={`${styles.deltaIndicator} ${
-              data.active_users_percentage > 0
+              data.active_users_secondary_metric > 0
                 ? styles.deltaPositive
                 : styles.deltaNegative
             }`}
           >
-            {data.active_users_percentage}
+            {data.active_users_secondary_metric}%
           </small>
         </h3>
         <span className={styles.numberLabel}>ACTIVE USERS</span>
       </div>
       <div className="col-12 col-sm-12 col-md-3 col-lg-3">
         <h3 className={styles.number}>
-          {data.total_teams}
+          {data.teams_main_metric}
           <small
             className={`${styles.deltaIndicator} ${
-              data.total_teams_created_thirty_days > 0
+              data.teams_secondary_metric > 0
                 ? styles.deltaPositive
                 : styles.deltaNegative
             }`}
           >
-            {data.total_teams_created_thirty_days}
+            {data.teams_secondary_metric}
           </small>
         </h3>
         <span className={styles.numberLabel}>TEAMS</span>

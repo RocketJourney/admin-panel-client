@@ -19,7 +19,7 @@ export default class SpotMonitor extends Component {
       data: [],
       totalPages: 0,
       totalEntries: 0,
-      pageSize: 15,
+      pageSize: 25,
       activePage: 1,
       isFetchingData: true
     };
@@ -27,7 +27,7 @@ export default class SpotMonitor extends Component {
   }
 
   componentDidMount() {
-    request("/spot-monitor?page=1&page_size=15")
+    request("/spot-monitor?page=1&page_size=25")
       .then(res =>
         this.setState({
           data: res.data.data,
@@ -49,7 +49,7 @@ export default class SpotMonitor extends Component {
   }
 
   getNextRequests(page) {
-    request(`/spot-monitor?page=${page}&page_size=15`)
+    request(`/spot-monitor?page=${page}&page_size=25`)
       .then(res =>
         this.setState({
           data: res.data.data,
