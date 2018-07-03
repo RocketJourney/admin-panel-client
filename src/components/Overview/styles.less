@@ -28,6 +28,7 @@
   position: relative;
   font-size: 12px;
   line-height: 20px;
+  margin: 2em 0 2em 0;
   text-align: center;
   text-transform: uppercase;
   width: 100%;
@@ -50,4 +51,49 @@
 .number {
   margin-top: 0;
   margin-bottom: 0;
+  font-family: inherit;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.numberLabel {
+  font-size: 85%;
+  letter-spacing: 0.15em;
+  color: #828a9f;
+  text-transform: uppercase;
+}
+
+.deltaIndicator {
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+  }
+  display: inline-block;
+  padding: 0.4em;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.deltaNegative {
+  &::after {
+    border-bottom: 0;
+    border-top: 4px solid;
+  }
+  color: #e64759;
+}
+
+.deltaPositive {
+  &::after {
+    border-bottom: 0;
+    border-top: 4px solid;
+  }
+  color: #1bc98e;
 }

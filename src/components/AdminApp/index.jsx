@@ -13,6 +13,7 @@ import Feedback from "../Feedback";
 import Leads from "../Leads";
 import ClubRequests from "../ClubRequests";
 import Overview from "../Overview";
+import SpotMonitor from "../SpotMonitor";
 
 import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
@@ -78,6 +79,14 @@ export default class AdminApp extends Component {
                 Club Requests
               </Link>
             </NavbarItem>
+            <NavbarItem
+              currentSection={this.props.location.pathname}
+              section="/spot-monitor"
+            >
+              <Link to="/spot-monitor" className="nav-option">
+                Spot Monitor
+              </Link>
+            </NavbarItem>
           </LeftSideItems>
           <RightSideItems>
             <button
@@ -93,6 +102,7 @@ export default class AdminApp extends Component {
           <Route exact path="/feedback" component={Feedback} />
           <Route exact path="/leads" component={Leads} />
           <Route exact path="/club-requests" component={ClubRequests} />
+          <Route exact path="/spot-monitor" component={SpotMonitor} />
           <Route exact path="/" component={Overview} />
         </Switch>
       </div>

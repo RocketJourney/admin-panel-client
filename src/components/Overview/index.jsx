@@ -13,13 +13,16 @@ export default class Overview extends Component {
     super(props);
 
     this.state = {
-      data: {}
+      data: {},
+      isFetchingData: true
     };
   }
 
   componentDidMount() {
     request("/overview")
-      .then(res => this.setState({ data: res.data.data }))
+      .then(res =>
+        this.setState({ data: res.data.data, isFetchingData: false })
+      )
       .catch(err => {
         if (err.response.status === 401) {
           logOut();
@@ -33,7 +36,11 @@ export default class Overview extends Component {
   render() {
     return (
       <div>
-        <View data={this.state.data} />
+        {this.state.isFetchingData ? (
+          <p>Cargando ...</p>
+        ) : (
+          <View data={this.state.data} />
+        )}
       </div>
     );
   }
