@@ -12,6 +12,7 @@ import CheckinRequest from "../CheckinRequest";
 import Feedback from "../Feedback";
 import Leads from "../Leads";
 import ClubRequests from "../ClubRequests";
+import Overview from "../Overview";
 
 import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
@@ -37,6 +38,14 @@ export default class AdminApp extends Component {
       <div>
         <Navbar logo={logo}>
           <LeftSideItems>
+            <NavbarItem
+              currentSection={this.props.location.pathname}
+              section="/"
+            >
+              <Link to="/" className="nav-option">
+                Overview
+              </Link>
+            </NavbarItem>
             <NavbarItem
               currentSection={this.props.location.pathname}
               section="/checkin-requests"
@@ -84,7 +93,7 @@ export default class AdminApp extends Component {
           <Route exact path="/feedback" component={Feedback} />
           <Route exact path="/leads" component={Leads} />
           <Route exact path="/club-requests" component={ClubRequests} />
-          <Route exact path="/" component={CheckinRequest} />
+          <Route exact path="/" component={Overview} />
         </Switch>
       </div>
     );

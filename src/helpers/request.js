@@ -14,8 +14,8 @@ function request(
   );
   const request = buildRequest(
     method,
-    `http://localhost:4000/api/v1${url}`,
-    // `https://api.admin.control.center/api/v1${url}`,
+    // `http://localhost:4000/api/v1${url}`,
+    `https://api.admin.control.center/api/v1${url}`,
     data,
     headers
   );
