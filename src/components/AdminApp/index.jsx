@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { Route, Switch, Link } from "react-router-dom";
+
+import request from "../../helpers/request";
 
 // import Login from "../Login";
 import Navbar from "../Navbar";
@@ -24,8 +25,38 @@ export default class AdminApp extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      totalCheckInRequests: 0,
+      totalFeedback: 0,
+      totalLeads: 0,
+      totalClubRequests: 0
+    };
+    this.getNotifications = this.getNotifications.bind(this);
     this.signOut = this.signOut.bind(this);
+  }
+
+  componentDidMount() {
+    this.getNotifications();
+  }
+
+  getNotifications() {
+    request("/notifications")
+      .then(res =>
+        this.setState({
+          totalCheckInRequests: res.data.data.check_in_requests,
+          totalFeedback: res.data.data.feedback,
+          totalLeads: res.data.data.leads,
+          totalClubRequests: res.data.data.club_requests
+        })
+      )
+      .catch(err => {
+        if (err.response.status === 401) {
+          logOut();
+          this.props.history.replace("/login");
+        } else {
+          this.setState({ error: true });
+        }
+      });
   }
 
   signOut() {
@@ -49,6 +80,7 @@ export default class AdminApp extends Component {
             </NavbarItem>
             <NavbarItem
               currentSection={this.props.location.pathname}
+              notification={this.state.totalCheckInRequests}
               section="/checkin-requests"
             >
               <Link to="/checkin-requests" className="nav-option">
@@ -57,6 +89,7 @@ export default class AdminApp extends Component {
             </NavbarItem>
             <NavbarItem
               currentSection={this.props.location.pathname}
+              notification={this.state.totalFeedback}
               section="/feedback"
             >
               <Link to="/feedback" className="nav-option">
@@ -65,6 +98,7 @@ export default class AdminApp extends Component {
             </NavbarItem>
             <NavbarItem
               currentSection={this.props.location.pathname}
+              notification={this.state.totalLeads}
               section="/leads"
             >
               <Link to="/leads" className="nav-option">
@@ -73,6 +107,7 @@ export default class AdminApp extends Component {
             </NavbarItem>
             <NavbarItem
               currentSection={this.props.location.pathname}
+              notification={this.state.totalClubRequests}
               section="/club-requests"
             >
               <Link to="/club-requests" className="nav-option">
