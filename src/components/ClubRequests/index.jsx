@@ -70,6 +70,7 @@ export default class ClubRequests extends Component {
       data: { club_request: { read: true } }
     })
       .then(() => {
+        this.props.getNotifications();
         const requests = this.state.requests.filter(r => r.id !== id);
         this.setState({ requests });
       })

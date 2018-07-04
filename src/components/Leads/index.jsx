@@ -41,6 +41,7 @@ export default class Leads extends Component {
     const data = { lead: { closed: true } };
     request(`/leads/${id}`, { method: "PATCH", data })
       .then(() => {
+        this.props.getNotifications();
         const leads = this.state.leads.filter(l => l.id != id);
         this.setState({ leads, isFetchingData: false });
       })

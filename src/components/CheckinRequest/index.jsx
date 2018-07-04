@@ -59,7 +59,7 @@ export default class CheckinRequest extends Component {
     const checkins = this.state.checkinRequests.filter(checkin => {
       return checkin.id !== prevCheckinId;
     });
-    this.setState({ checkinRequests: checkins });
+    this.setState({ checkinRequests: checkins }, this.props.getNotifications);
     if (checkins.length > 0) {
       console.log(`#${checkins[0].id}`);
       $(`#checkin-${checkins[0].id}`).click();

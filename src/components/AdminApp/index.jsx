@@ -4,7 +4,7 @@ import { Route, Switch, Link } from "react-router-dom";
 
 import request from "../../helpers/request";
 
-// import Login from "../Login";
+import { Consumer, Provider } from "./notification_context";
 import Navbar from "../Navbar";
 import NavbarItem from "../Navbar/NavbarItem";
 import LeftSideItems from "../Navbar/LeftSideItems";
@@ -67,7 +67,11 @@ export default class AdminApp extends Component {
 
   render() {
     return (
-      <div>
+      <Provider
+        value={{
+          getNotifications: this.getNotifications
+        }}
+      >
         <Navbar logo={logo}>
           <LeftSideItems>
             <NavbarItem
@@ -133,14 +137,49 @@ export default class AdminApp extends Component {
           </RightSideItems>
         </Navbar>
         <Switch>
-          <Route exact path="/checkin-requests" component={CheckinRequest} />
-          <Route exact path="/feedback" component={Feedback} />
-          <Route exact path="/leads" component={Leads} />
-          <Route exact path="/club-requests" component={ClubRequests} />
+          <Route
+            exact
+            path="/checkin-requests"
+            component={props => (
+              <CheckinRequest getNotifications={this.getNotifications} />
+            )}
+          />
+          <Route
+            exact
+            path="/feedback"
+            component={props => (
+              <Feedback getNotifications={this.getNotifications} />
+            )}
+          />
+          <Route
+            exact
+            path="/leads"
+            component={props => (
+              <Consumer>
+                {({ getNotifications }) => (
+                  <Leads getNotifications={getNotifications} {...props} />
+                )}
+              </Consumer>
+            )}
+          />
+          <Route
+            exact
+            path="/club-requests"
+            component={props => (
+              <Consumer>
+                {({ getNotifications }) => (
+                  <ClubRequests
+                    getNotifications={getNotifications}
+                    {...props}
+                  />
+                )}
+              </Consumer>
+            )}
+          />
           <Route exact path="/spot-monitor" component={SpotMonitor} />
           <Route exact path="/" component={Overview} />
         </Switch>
-      </div>
+      </Provider>
     );
   }
 }

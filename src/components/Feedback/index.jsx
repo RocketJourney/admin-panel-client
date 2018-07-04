@@ -40,6 +40,7 @@ export default class Feedback extends Component {
     const data = { feedback: { read: true } };
     request(`/feedback/${id}`, { method: "PATCH", data })
       .then(() => {
+        this.props.getNotifications();
         const feedback = this.state.feedback.filter(f => f.id != id);
         this.setState({ feedback });
       })
