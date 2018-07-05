@@ -22,6 +22,7 @@ export default class Leads extends Component {
   }
 
   componentDidMount() {
+    console.log("did mount again");
     request("/leads")
       .then(res =>
         this.setState({ leads: res.data.data, isFetchingData: false })
@@ -35,6 +36,17 @@ export default class Leads extends Component {
           this.setState({ error: true });
         }
       });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("=====>");
+    console.log(nextProps);
+    console.log(this.props);
+    console.log(nextState);
+    console.log(this.state);
+    console.log(nextProps === this.props);
+    console.log(nextState === this.state);
+    return true;
   }
 
   archive(id) {
@@ -52,6 +64,7 @@ export default class Leads extends Component {
   }
 
   render() {
+    console.log("render leads");
     return (
       <div>
         {this.state.isFetchingData ? (

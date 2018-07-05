@@ -39,6 +39,17 @@ export default class AdminApp extends Component {
     this.getNotifications();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("admin nextProps", nextProps);
+    console.log("admin this.props", this.props);
+    console.log("admin nextState", nextState);
+    console.log("admin this.state", this.state);
+    console.log(nextProps === this.props);
+    console.log(nextState === this.state);
+    // alert("parent");
+    return true;
+  }
+
   getNotifications() {
     request("/notifications")
       .then(res =>
@@ -148,32 +159,24 @@ export default class AdminApp extends Component {
             exact
             path="/feedback"
             component={props => (
-              <Feedback getNotifications={this.getNotifications} />
+              <Feedback getNotifications={this.getNotifications} {...props} />
             )}
           />
           <Route
             exact
             path="/leads"
             component={props => (
-              <Consumer>
-                {({ getNotifications }) => (
-                  <Leads getNotifications={getNotifications} {...props} />
-                )}
-              </Consumer>
+              <Leads getNotifications={this.getNotifications} {...props} />
             )}
           />
           <Route
             exact
             path="/club-requests"
             component={props => (
-              <Consumer>
-                {({ getNotifications }) => (
-                  <ClubRequests
-                    getNotifications={getNotifications}
-                    {...props}
-                  />
-                )}
-              </Consumer>
+              <ClubRequests
+                getNotifications={this.getNotifications}
+                {...props}
+              />
             )}
           />
           <Route exact path="/spot-monitor" component={SpotMonitor} />

@@ -26,6 +26,16 @@
 .tbody {
   background-color: #2d2d2d;
   tr {
+    &:last-child {
+      td {
+        &:first-child {
+          border-radius: 0 0 0 8px;
+        }
+        &:last-child {
+          border-radius: 0 0 8px 0;
+        }
+      }
+    }
     border: none;
   }
 }
