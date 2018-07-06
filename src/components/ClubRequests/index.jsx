@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import View from "./view";
 
+import { logOut } from "../../helpers/auth";
 import request from "../../helpers/request";
 
 export default class ClubRequests extends Component {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import request from "../../helpers/request";
+import { logOut } from "../../helpers/auth";
 
 import View from "./view";
 import Loader from "../Loader";

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Route, Switch, Link } from "react-router-dom";
 
 import request from "../../helpers/request";
+import { logOut } from "../../helpers/auth";
 
 import { Consumer, Provider } from "./notification_context";
 import Navbar from "../Navbar";
