@@ -14,7 +14,7 @@ const parseHour = date => {
   const tzTime = moment.tz(currTz);
   const formattedTime = tzTime.format("h:mm A");
   const date_to_mx = moment
-    .tz(date, "America/Mexico_City")
+    .tz(date, currTz)
     .add(tzTime._offset, "minutes")
     .format();
   return moment(date_to_mx).fromNow();
