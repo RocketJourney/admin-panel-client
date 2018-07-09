@@ -47,7 +47,7 @@ const View = ({ archive, feedback }) => (
                   <Td>{f.message}</Td>
                   <Td>
                     {f.account.map(account => {
-                      if (account.type == 2) {
+                      if (account.type == 2 && account.email !== null) {
                         return (
                           <a
                             key={account.id}
@@ -61,7 +61,7 @@ const View = ({ archive, feedback }) => (
                             {`(c)${account.email}`}
                           </a>
                         );
-                      } else if (account.type == 3) {
+                      } else if (account.type == 3 && account.email !== null) {
                         <a
                           key={account.id}
                           className={styles.email}

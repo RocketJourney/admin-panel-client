@@ -9,6 +9,7 @@ const setTimeZone = () => {
 };
 
 const parseHour = date => {
+  setTimeZone();
   const currTz = sessionStorage.getItem("timezone");
   const tzTime = moment.tz(currTz);
   const formattedTime = tzTime.format("h:mm A");

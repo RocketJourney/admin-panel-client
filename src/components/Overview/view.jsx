@@ -56,13 +56,7 @@ const View = ({ data }) => (
       <div className="col-12 col-sm-12 col-md-3 col-lg-3">
         <h3 className={styles.number}>
           {data.active_users_main_metric}
-          <small
-            className={`${styles.deltaIndicator} ${
-              data.active_users_secondary_metric > 0
-                ? styles.deltaPositive
-                : styles.deltaNegative
-            }`}
-          >
+          <small className={`${styles.deltaIndicator} ${styles.activeUsers}`}>
             {data.active_users_secondary_metric}%
           </small>
         </h3>
