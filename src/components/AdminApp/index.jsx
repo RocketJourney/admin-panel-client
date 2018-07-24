@@ -16,6 +16,7 @@ import Leads from "../Leads";
 import ClubRequests from "../ClubRequests";
 import Overview from "../Overview";
 import SpotMonitor from "../SpotMonitor";
+import KPI from "../Kpi";
 
 import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
@@ -138,6 +139,14 @@ export default class AdminApp extends Component {
                 Spot Monitor
               </Link>
             </NavbarItem>
+            <NavbarItem
+              currentSection={this.props.location.pathname}
+              section="/spot-monitor"
+            >
+              <Link to="/kpis" className="nav-option">
+                KPI'S
+              </Link>
+            </NavbarItem>
           </LeftSideItems>
           <RightSideItems>
             <button
@@ -180,6 +189,7 @@ export default class AdminApp extends Component {
               />
             )}
           />
+          <Route exact path="/kpis" component={KPI} />
           <Route exact path="/spot-monitor" component={SpotMonitor} />
           <Route exact path="/" component={Overview} />
         </Switch>
