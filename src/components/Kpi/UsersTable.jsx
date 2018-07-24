@@ -41,7 +41,9 @@ const UsersTable = ({ users, getTeamsNumber, returnConnectionData }) => (
           </Td>
           <Td>
             {user.accounts.map(account => (
-              <span className={styles.email}>{account.email}</span>
+              <span key={account.id} className={styles.email}>
+                {account.email}
+              </span>
             ))}
           </Td>
           <Td>{user.accounts.map(account => returnConnectionData(account))}</Td>
