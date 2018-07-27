@@ -22,7 +22,7 @@ const UsersTable = ({ users, getTeamsNumber, returnConnectionData }) => (
       <Th>Journey</Th>
       <Th>Streak</Th>
       <Th>Teams</Th>
-      <Th>Sign Up Date</Th>
+      <Th>Sign Up</Th>
       <Th>Last Seen</Th>
     </Thead>
     <Tbody>
