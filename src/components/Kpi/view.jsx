@@ -8,6 +8,7 @@ import Button from "../Button";
 import styles from "./styles.less";
 
 const View = ({
+  actualKpi,
   currentWeek,
   currentYear,
   handleChange,
@@ -73,7 +74,11 @@ const View = ({
       <div className="row">
         <div className="col-12 col-sm-12 col-md-12 col-lg-12">
           <hr className={styles.hr} />
-          <KpiOverview usersQuantity={users.length} kpi={kpi} />
+          <KpiOverview
+            actualKpi={actualKpi}
+            usersQuantity={users.length}
+            kpi={kpi}
+          />
           <hr className={styles.hr} />
         </div>
       </div>

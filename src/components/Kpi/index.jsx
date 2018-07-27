@@ -23,7 +23,7 @@ class Kpi extends Component {
         started_journey_count: 0,
         started_journey_pct: 0,
         week: 3,
-        year: 2018
+        year: 2019
       },
       kpi: {
         connected_users_count: 0,
@@ -63,7 +63,9 @@ class Kpi extends Component {
 
   getUsers(week, year) {
     request(`/users-history?week=${week}&year=${year}`)
-      .then(res => this.setState({ users: res.data.data }))
+      .then(res =>
+        this.setState({ users: res.data.data, actualKpi: res.data.kpi })
+      )
       .catch(err => {
         if (err.response.status === 401) {
           logOut();
@@ -93,6 +95,7 @@ class Kpi extends Component {
     return (
       <div>
         <View
+          actualKpi={this.state.actualKpi}
           kpi={this.state.kpi}
           users={this.state.users}
           currentWeek={this.state.week}
