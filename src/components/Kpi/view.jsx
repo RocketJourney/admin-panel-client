@@ -14,7 +14,8 @@ const View = ({
   handleChange,
   kpi,
   users,
-  refreshInfo
+  refreshInfo,
+  range
 }) => {
   const returnConnectionData = account => {
     if (account.club !== null && account.application === null) {
@@ -46,7 +47,7 @@ const View = ({
         </div>
         <div className="col-12 col-sm-12 col-md-6 col-lg-6">
           <form className={styles.getWeekForm} onSubmit={refreshInfo}>
-            <span className={styles.currentWeekLabel}>Current Week</span>
+            <span className={styles.currentWeekLabel}>{range}</span>
             <input
               className={styles.weekInput}
               name="week"

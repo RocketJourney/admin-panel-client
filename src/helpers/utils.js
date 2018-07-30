@@ -9,6 +9,9 @@ const setTimeZone = () => {
 };
 
 const parseHour = date => {
+  if (date === "never") {
+    return "Never";
+  }
   setTimeZone();
   const currTz = sessionStorage.getItem("timezone");
   const tzTime = moment.tz(currTz);
@@ -20,9 +23,28 @@ const parseHour = date => {
   return moment(date_to_mx).fromNow();
 };
 
-export default {
-  setTimeZone,
-  parseHour
+// Calculates week range from week number
+// Author: https://codepen.io/Venugopal46/pen/WrxdLY?editors=0010#0
+const getDateRangeOfWeek = (week, year) => {
+  const firstDayOfWeek = moment()
+    .day("Monday")
+    .year(year)
+    .week(week)
+    .format("YYYY-MM-DD");
+  const lastDayOfWeek = moment()
+    .day("Sunday")
+    .year(year)
+    .week(week)
+    .add(7, "days")
+    .format("YYYY-MM-DD");
+
+  return `${firstDayOfWeek} to ${lastDayOfWeek}`;
 };
 
-export { setTimeZone, parseHour };
+export default {
+  setTimeZone,
+  parseHour,
+  getDateRangeOfWeek
+};
+
+export { setTimeZone, parseHour, getDateRangeOfWeek };

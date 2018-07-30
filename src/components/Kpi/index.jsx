@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import moment from "moment";
 
 import request from "../../helpers/request";
+import { getDateRangeOfWeek } from "../../helpers/utils";
 
+import Loader from "../Loader";
 import View from "./view";
+
+import styles from "./styles.less";
 
 class Kpi extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFetchingData: true,
+      range: "Current Week",
       users: [],
       date: moment(),
       week: moment().format("W"),
@@ -42,6 +48,7 @@ class Kpi extends Component {
     this.getKpi = this.getKpi.bind(this);
     this.getUses = this.getUsers.bind(this);
     this.refreshInfo = this.refreshInfo.bind(this);
+    this.getCurrentWeekLabel = this.getCurrentWeekLabel.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +60,7 @@ class Kpi extends Component {
     e.preventDefault();
     const week = this.state.week || moment().format("W");
     const year = this.state.year || moment().format("YYYY");
+    this.setState({ isFetchingData: true });
     this.getUsers(week, year);
     this.getKpi(week, year);
   }
@@ -63,9 +71,15 @@ class Kpi extends Component {
 
   getUsers(week, year) {
     const realWeek = (parseInt(week) + 1).toString();
+    const label = this.getCurrentWeekLabel();
     request(`/users-history?week=${realWeek}&year=${year}`)
       .then(res =>
-        this.setState({ users: res.data.data, actualKpi: res.data.kpi })
+        this.setState({
+          isFetchingData: false,
+          users: res.data.data,
+          actualKpi: res.data.kpi,
+          range: label
+        })
       )
       .catch(err => {
         if (err.response.status === 401) {
@@ -92,7 +106,20 @@ class Kpi extends Component {
       });
   }
 
+  getCurrentWeekLabel() {
+    const currentWeek = moment().format("W");
+    const currentYear = moment().format("YYYY");
+
+    if (currentWeek === this.state.week && currentYear === this.state.year) {
+      return "Current Week";
+    }
+    return getDateRangeOfWeek(this.state.week, this.state.year);
+  }
+
   render() {
+    if (this.state.isFetchingData) {
+      return <Loader atl="cargando..." className={styles.loader} />;
+    }
     return (
       <div>
         <View
@@ -103,6 +130,7 @@ class Kpi extends Component {
           currentYear={this.state.year}
           handleChange={this.handleChange}
           refreshInfo={this.refreshInfo}
+          range={this.state.range}
         />
       </div>
     );

@@ -141,7 +141,7 @@ export default class AdminApp extends Component {
             </NavbarItem>
             <NavbarItem
               currentSection={this.props.location.pathname}
-              section="/spot-monitor"
+              section="/kpis"
             >
               <Link to="/kpis" className="nav-option">
                 KPI'S
