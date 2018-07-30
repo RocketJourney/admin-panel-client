@@ -40,11 +40,16 @@ const UsersTable = ({ users, getTeamsNumber, returnConnectionData }) => (
             {user.first_name} {user.last_name}
           </Td>
           <Td>
-            {user.accounts.map(account => (
-              <span key={account.id} className={styles.email}>
-                {account.email}
-              </span>
-            ))}
+            {user.accounts.map(account => {
+              if (account.type === 3) {
+                return (
+                  <span key={account.id} className={styles.email}>
+                    {account.email}
+                  </span>
+                );
+              }
+              return null;
+            })}
           </Td>
           <Td>{user.accounts.map(account => returnConnectionData(account))}</Td>
           <Td>

@@ -18,6 +18,9 @@ const View = ({
   range
 }) => {
   const returnConnectionData = account => {
+    if (account.type === 3) {
+      return null;
+    }
     if (account.club !== null && account.application === null) {
       return <span className={styles.application}>{account.club.name}</span>;
     } else if (account.application !== null) {
