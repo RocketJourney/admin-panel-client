@@ -62,7 +62,8 @@ class Kpi extends Component {
   }
 
   getUsers(week, year) {
-    request(`/users-history?week=${week}&year=${year}`)
+    const realWeek = (parseInt(week) + 1).toString();
+    request(`/users-history?week=${realWeek}&year=${year}`)
       .then(res =>
         this.setState({ users: res.data.data, actualKpi: res.data.kpi })
       )
