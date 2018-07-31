@@ -30,7 +30,8 @@ export default class CheckinRequestBody extends Component {
       showEventForm,
       eventSelected,
       isFetchingEvents,
-      setIsFetchingEvents
+      setIsFetchingEvents,
+      isFetchingUserStatus
     } = this.props;
 
     return (
@@ -68,15 +69,23 @@ export default class CheckinRequestBody extends Component {
               userId={checkinRequest.user.user_id}
             />
           )}
-          {showEventForm === false && (
-            <UserStatusForm
-              {...this.props}
-              reason={checkinRequest.reason}
-              weekDays={0}
-              handleChange={handleChange}
-              handleChangeCheckbox={handleChangeCheckbox}
+          {isFetchingUserStatus === true && (
+            <img
+              className={`align-middle ${styles.loader}`}
+              src={loader}
+              alt="loading..."
             />
           )}
+          {showEventForm === false &&
+            isFetchingUserStatus === false && (
+              <UserStatusForm
+                {...this.props}
+                reason={checkinRequest.reason}
+                weekDays={0}
+                handleChange={handleChange}
+                handleChangeCheckbox={handleChangeCheckbox}
+              />
+            )}
         </div>
       </div>
     );

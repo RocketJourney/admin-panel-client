@@ -177,7 +177,7 @@ export default class EventsForm extends Component {
     this.props.closeAfterUpdateEvent();
     request("/events", { method: "POST", data: data })
       .then(res => {
-        this.props.refreshEvents(res.data.data);
+        this.props.refreshEvents(res.data.data, "new");
       })
       .catch(err => {
         console.warn(err);
@@ -205,7 +205,7 @@ export default class EventsForm extends Component {
       data: data
     })
       .then(res => {
-        this.props.refreshEvents(res.data.data);
+        this.props.refreshEvents(res.data.data, "update");
       })
       .catch(err => {
         console.warn(err);

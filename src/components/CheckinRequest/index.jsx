@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import View from "./view";
 
 import request from "../../helpers/request";
+import { setTimeZone } from "../../helpers/utils";
 import { logOut } from "../../helpers/auth";
 import loader from "../../img/spinner.svg";
 import styles from "./styles.less";
@@ -23,6 +24,7 @@ export default class CheckinRequest extends Component {
     };
     this.getClubsAndSpots = this.getClubsAndSpots.bind(this);
     this.openNextCheckin = this.openNextCheckin.bind(this);
+    setTimeZone();
   }
 
   componentDidMount() {
@@ -60,7 +62,8 @@ export default class CheckinRequest extends Component {
     this.setState({ checkinRequests: checkins });
     if (checkins.length > 0) {
       console.log(`#${checkins[0].id}`);
-      $(`#${checkins[0].id}`).modal("show");
+      $(`#checkin-${checkins[0].id}`).click();
+      // $(`#${checkins[0].id}`).modal("show");
     }
   }
 

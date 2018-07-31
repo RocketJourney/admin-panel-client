@@ -13,99 +13,13 @@ export default class CheckinRequestForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFetchingEvents: false,
+      isFetchingEvents: true,
+      isFetchingUserStatus: true,
       events: props.checkinRequest.user.events,
       eventSelected: {},
       showEventForm: false,
       editedForm: false,
-      requestId: { value: props.checkinRequest.id, modified: false },
-      userId: {
-        value: this.props.checkinRequest.user.user_id,
-        modified: false
-      },
-      // -------------------------------------------------
-      weekScoresId: this.props.checkinRequest.user.week_score_id,
-      userName: {
-        value: this.props.userName,
-        modified: false,
-        originalValue: this.props.userName
-      },
-      statusId: {
-        value: this.props.checkinRequest.user.status_id,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.status_id
-      },
-      thisWeek: {
-        value: this.props.checkinRequest.user.status.week_streak,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.status.week_streak
-      },
-      weekDays: {
-        value: this.props.weekDays,
-        modified: false,
-        originalValue: this.props.weekDays
-      },
-      streak: {
-        value: this.props.checkinRequest.user.streak,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.streak
-      },
-      maxStreak: {
-        value: this.props.checkinRequest.user.max_streak,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.max_streak
-      },
-      cheatProgress: {
-        value: this.props.checkinRequest.user.cheat_progress,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.cheat_progress
-      },
-      cheatDays: {
-        value: this.props.checkinRequest.user.cheat_days,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.cheat_days
-      },
-      dangerZone: {
-        value: this.props.checkinRequest.user.status.danger_zone || false,
-        modified: false,
-        originalValue:
-          this.props.checkinRequest.user.status.danger_zone || false
-      },
-      monday: {
-        value: this.props.checkinRequest.user.monday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.monday
-      },
-      tuesday: {
-        value: this.props.checkinRequest.user.tuesday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.tuesday
-      },
-      wednesday: {
-        value: this.props.checkinRequest.user.wednesday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.wednesday
-      },
-      thursday: {
-        value: this.props.checkinRequest.user.thursday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.thursday
-      },
-      friday: {
-        value: this.props.checkinRequest.user.friday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.friday
-      },
-      saturday: {
-        value: this.props.checkinRequest.user.saturday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.saturday
-      },
-      sunday: {
-        value: this.props.checkinRequest.user.sunday,
-        modified: false,
-        originalValue: this.props.checkinRequest.user.sunday
-      }
+      requestId: { value: props.checkinRequest.id, modified: false }
     };
     this.closeEditForm = this.closeEditForm.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
@@ -120,6 +34,14 @@ export default class CheckinRequestForm extends Component {
     this.verifyCheckin = this.verifyCheckin.bind(this);
     this.setIsFetchingEvents = this.setIsFetchingEvents.bind(this);
     this.setEditedForm = this.setEditedForm.bind(this);
+    this.fetchEvents = this.fetchEvents.bind(this);
+    this.fetchUserInfo = this.fetchUserInfo.bind(this);
+    this.getInfo = this.getInfo.bind(this);
+  }
+
+  getInfo() {
+    this.fetchEvents();
+    this.fetchUserInfo();
   }
 
   handleChange({ target: { name, value } }) {
@@ -162,7 +84,111 @@ export default class CheckinRequestForm extends Component {
       this.setState({ editedForm: false });
     }
   }
-  s;
+
+  fetchUserInfo() {
+    request(`/users/${this.props.checkinRequest.user.user_id}/status`)
+      .then(res => {
+        const user = res.data.data;
+        this.setState({
+          userId: {
+            value: user.user_id,
+            modified: false
+          },
+          weekScoresId: user.week_score_id,
+          userName: {
+            value: user.user_name,
+            modified: false,
+            originalValue: user.user_name
+          },
+          statusId: {
+            value: user.status_id,
+            modified: false,
+            originalValue: user.status_id
+          },
+          thisWeek: {
+            value: user.status.week_streak,
+            modified: false,
+            originalValue: user.status.week_streak
+          },
+          weekDays: {
+            value: this.props.weekDays,
+            modified: false,
+            originalValue: this.props.weekDays
+          },
+          streak: {
+            value: user.streak,
+            modified: false,
+            originalValue: user.streak
+          },
+          maxStreak: {
+            value: user.max_streak,
+            modified: false,
+            originalValue: user.max_streak
+          },
+          cheatProgress: {
+            value: user.cheat_progress,
+            modified: false,
+            originalValue: user.cheat_progress
+          },
+          cheatDays: {
+            value: user.cheat_days,
+            modified: false,
+            originalValue: user.cheat_days
+          },
+          dangerZone: {
+            value: user.status.danger_zone || false,
+            modified: false,
+            originalValue: user.status.danger_zone || false
+          },
+          monday: {
+            value: user.monday,
+            modified: false,
+            originalValue: user.monday
+          },
+          tuesday: {
+            value: user.tuesday,
+            modified: false,
+            originalValue: user.tuesday
+          },
+          wednesday: {
+            value: user.wednesday,
+            modified: false,
+            originalValue: user.wednesday
+          },
+          thursday: {
+            value: user.thursday,
+            modified: false,
+            originalValue: user.thursday
+          },
+          friday: {
+            value: user.friday,
+            modified: false,
+            originalValue: user.friday
+          },
+          saturday: {
+            value: user.saturday,
+            modified: false,
+            originalValue: user.saturday
+          },
+          sunday: {
+            value: user.sunday,
+            modified: false,
+            originalValue: user.sunday
+          },
+          isFetchingUserStatus: false
+        });
+      })
+      .catch(err => console.warn(err));
+  }
+
+  fetchEvents() {
+    this.setState({ isFetchingEvents: true });
+    request(`/users/${this.props.checkinRequest.user.user_id}/events`)
+      .then(res =>
+        this.setState({ events: res.data.data, isFetchingEvents: false })
+      )
+      .catch(err => console.warn(err));
+  }
 
   closeEditForm() {
     this.setState({ showEventForm: false, eventSelected: {} });
@@ -170,25 +196,40 @@ export default class CheckinRequestForm extends Component {
 
   showUpdateForm(id) {
     const [event] = this.state.events.filter(event => event.id === id);
+    console.log(event);
     this.setState({ eventSelected: event, showEventForm: true });
   }
 
-  refreshEvents(event) {
+  refreshEvents(event, action) {
     const events = this.state.events;
-    events.push(event);
-    const sortedEvents = events.sort((first, second) => {
-      const firstDate = new Date(first.inserted_at);
-      const secondDate = new Date(second.inserted_at);
-
-      if (firstDate < secondDate) {
-        return 1;
-      } else if (firstDate > secondDate) {
-        return -1;
-      }
-      return 0;
-    });
-    console.log(sortedEvents);
-    this.setState({ sortedEvents, isFetchingEvents: false });
+    if (action === "new") {
+      events.push(event);
+      const sortedEvents = events.sort((first, second) => {
+        const firstDate = new Date(first.inserted_at);
+        const secondDate = new Date(second.inserted_at);
+        if (firstDate < secondDate) {
+          return 1;
+        } else if (firstDate > secondDate) {
+          return -1;
+        }
+        return 0;
+      });
+      this.setState({ events: sortedEvents, isFetchingEvents: false });
+    } else {
+      const filterEvents = events.filter(e => e.id !== event.id);
+      filterEvents.push(event);
+      const sortedEvents = filterEvents.sort((first, second) => {
+        const firstDate = new Date(first.inserted_at);
+        const secondDate = new Date(second.inserted_at);
+        if (firstDate < secondDate) {
+          return 1;
+        } else if (firstDate > secondDate) {
+          return -1;
+        }
+        return 0;
+      });
+      this.setState({ events: sortedEvents, isFetchingEvents: false });
+    }
   }
 
   showNewEventForm() {
@@ -332,9 +373,11 @@ export default class CheckinRequestForm extends Component {
     return (
       <div>
         <Button
+          id={`checkin-${checkinRequest.id}`}
           size="small"
           color="yellow"
           data-toggle="modal"
+          onClick={this.getInfo}
           data-target={`#${checkinRequest.id}`}
         >
           Resolve
