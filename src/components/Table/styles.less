@@ -26,6 +26,16 @@
 .tbody {
   background-color: #2d2d2d;
   tr {
+    &:last-child {
+      td {
+        &:first-child {
+          border-radius: 0 0 0 8px;
+        }
+        &:last-child {
+          border-radius: 0 0 8px 0;
+        }
+      }
+    }
     border: none;
   }
 }
@@ -37,6 +47,7 @@
 }
 
 .th {
+  min-width: 72px;
   i {
     margin: 0 7px 0 0;
     vertical-align: text-top;
@@ -55,4 +66,12 @@
 }
 .gray {
   color: #818181;
+}
+
+.true {
+  font-weight: bold;
+}
+
+.false {
+  font-weight: normal;
 }
