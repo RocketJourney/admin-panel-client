@@ -2,7 +2,13 @@ import React from "react";
 
 import styles from "./styles.less";
 
-const StreakStarted = ({ insertedAt, id, updateAction, deleteAction }) => {
+const StreakStarted = ({
+  insertedAt,
+  id,
+  updateAction,
+  deleteAction,
+  manuallyAdded
+}) => {
   const updateEvent = () => {
     updateAction(id);
   };
@@ -23,7 +29,10 @@ const StreakStarted = ({ insertedAt, id, updateAction, deleteAction }) => {
         </div>
         <div>
           <p className={styles.title}>Streak Started</p>
-          <p className={styles.date}>{insertedAt}</p>
+          <div className={styles.insertedAtWrapper}>
+            <p className={styles.date}>{insertedAt}</p>
+            {manuallyAdded === true && <span className={styles.manual}>M</span>}
+          </div>
         </div>
       </div>
       <div className={`col-lg-3 col-md-3 col-sm-12 ${styles["edit-actions"]}`}>

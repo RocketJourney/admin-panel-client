@@ -40,7 +40,10 @@ const StravaRun = ({
               .replace(".", ":")}{" "}
             min/km
           </p>
-          <p className={styles.date}>{insertedAt}</p>
+          <div className={styles.insertedAtWrapper}>
+            <p className={styles.date}>{insertedAt}</p>
+            {manuallyAdded === true && <span className={styles.manual}>M</span>}
+          </div>
           <img
             className="strava"
             src="https://assets.rocketjourney.com/admin-panel/assets/i-app-strava.png"

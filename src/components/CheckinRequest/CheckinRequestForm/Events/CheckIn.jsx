@@ -8,7 +8,8 @@ const CheckIn = ({
   insertedAt,
   id,
   updateAction,
-  deleteAction
+  deleteAction,
+  manuallyAdded
 }) => {
   const updateEvent = () => {
     updateAction(id);
@@ -32,7 +33,10 @@ const CheckIn = ({
           ) : (
             <p className={styles.title}>{name}</p>
           )}
-          <p className={styles.date}>{insertedAt}</p>
+          <div className={styles.insertedAtWrapper}>
+            <p className={styles.date}>{insertedAt}</p>
+            {manuallyAdded === true && <span className={styles.manual}>M</span>}
+          </div>
         </div>
       </div>
       <div className={`col-lg-3 col-md-3 col-sm-12 ${styles["edit-actions"]}`}>
