@@ -36,6 +36,7 @@ export default class Events extends Component {
             badgeUrl={event.badge_url}
             name={event.name}
             insertedAt={event.inserted_at}
+            manuallyAdded={event.manually_added}
           />
         );
       case 2:
@@ -48,6 +49,7 @@ export default class Events extends Component {
             insertedAt={event.inserted_at}
             weeks={event.duration}
             weekSeparator={weekSeparator}
+            manuallyAdded={event.manually_added}
           />
         );
       case 3:
@@ -61,6 +63,7 @@ export default class Events extends Component {
             insertedAt={event.inserted_at}
             distance={event.distance}
             duration={event.duration}
+            manuallyAdded={event.manually_added}
           />
         );
       case 4:
@@ -73,6 +76,7 @@ export default class Events extends Component {
             badgeUrl={cheatDay}
             insertedAt={event.inserted_at}
             duration={event.duration}
+            manuallyAdded={event.manually_added}
           />
         );
       case 5:
@@ -83,6 +87,7 @@ export default class Events extends Component {
             deleteAction={this.props.deleteEvent}
             key={event.id}
             insertedAt={event.inserted_at}
+            manuallyAdded={event.manually_added}
           />
         );
       case 6:
@@ -93,6 +98,7 @@ export default class Events extends Component {
             deleteAction={this.props.deleteEvent}
             key={event.id}
             insertedAt={event.inserted_at}
+            manuallyAdded={event.manually_added}
           />
         );
       case 7:
@@ -106,6 +112,7 @@ export default class Events extends Component {
             name={event.name}
             key={event.id}
             insertedAt={event.inserted_at}
+            manuallyAdded={event.manually_added}
           />
         );
       case 8:
@@ -120,6 +127,7 @@ export default class Events extends Component {
             distance={event.distance}
             duration={event.duration}
             insertedAt={event.inserted_at}
+            manuallyAdded={event.manually_added}
           />
         );
       case 9:
@@ -134,6 +142,7 @@ export default class Events extends Component {
             distance={event.distance}
             duration={event.duration}
             insertedAt={event.inserted_at}
+            manuallyAdded={event.manually_added}
           />
         );
       default:
