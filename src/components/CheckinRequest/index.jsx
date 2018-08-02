@@ -6,7 +6,7 @@ import View from "./view";
 import request from "../../helpers/request";
 import { setTimeZone } from "../../helpers/utils";
 import { logOut } from "../../helpers/auth";
-import loader from "../../img/spinner.svg";
+import loader from "../../img/spinner-100px.gif";
 import styles from "./styles.less";
 
 export default class CheckinRequest extends Component {

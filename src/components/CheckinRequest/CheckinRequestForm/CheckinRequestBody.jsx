@@ -7,7 +7,7 @@ import EventsForm from "./Events/EventsForm";
 import UserStatusForm from "./UserStatusForm";
 
 import styles from "./styles.less";
-import loader from "../../../img/spinner.svg";
+import loader from "../../../img/spinner-100px.gif";
 
 export default class CheckinRequestBody extends Component {
   constructor(props) {
