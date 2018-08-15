@@ -87,14 +87,14 @@ export default class AdminApp extends Component {
       >
         <Navbar logo={logo}>
           <LeftSideItems>
-            <NavbarItem
+            {/* <NavbarItem
               currentSection={this.props.location.pathname}
               section="/"
             >
               <Link to="/" className="nav-option">
                 Overview
               </Link>
-            </NavbarItem>
+            </NavbarItem> */}
             <NavbarItem
               currentSection={this.props.location.pathname}
               notification={this.state.totalCheckInRequests}
