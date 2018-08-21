@@ -47,7 +47,7 @@ const View = ({ archive, feedback }) => (
                   <Td>{f.message}</Td>
                   <Td>
                     {f.account.map(account => {
-                      if (account.type == 2 && account.email !== null) {
+                      if (account.type == 9 && account.email !== null) {
                         return (
                           <a
                             key={account.id}
@@ -62,17 +62,19 @@ const View = ({ archive, feedback }) => (
                           </a>
                         );
                       } else if (account.type == 3 && account.email !== null) {
-                        <a
-                          key={account.id}
-                          className={styles.email}
-                          href={`mailto:${
-                            account.email
-                          }?subject=Respuesta de RocketJourney&body=Hola ${
-                            f.first_name
-                          }, recibimos tu mensaje: ${f.message}`}
-                        >
-                          {`(s)${account.email}`}
-                        </a>;
+                        return (
+                          <a
+                            key={account.id}
+                            className={styles.email}
+                            href={`mailto:${
+                              account.email
+                            }?subject=Respuesta de RocketJourney&body=Hola ${
+                              f.first_name
+                            }, recibimos tu mensaje: ${f.message}`}
+                          >
+                            {`(s)${account.email}`}
+                          </a>
+                        );
                       }
                     })}
                   </Td>
