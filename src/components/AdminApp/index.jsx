@@ -122,7 +122,7 @@ export default class AdminApp extends Component {
                 Leads
               </Link>
             </NavbarItem>
-            <NavbarItem
+            {/* <NavbarItem
               currentSection={this.props.location.pathname}
               notification={this.state.totalClubRequests}
               section="/club-requests"
@@ -130,7 +130,7 @@ export default class AdminApp extends Component {
               <Link to="/club-requests" className="nav-option">
                 Club Requests
               </Link>
-            </NavbarItem>
+            </NavbarItem> */}
             <NavbarItem
               currentSection={this.props.location.pathname}
               section="/spot-monitor"

@@ -237,7 +237,7 @@ export default class CheckinRequestForm extends Component {
       id: undefined,
       user_id: this.props.checkinRequest.user.user_id,
       event_type_id: 1,
-      club_id: this.props.checkinRequest.club.checkinClub,
+      club_id: 0,
       spot_id: this.props.checkinRequest.spot.id,
       inserted_at: this.props.checkinRequest.local_date
     };

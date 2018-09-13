@@ -69,19 +69,11 @@ export default class EventsForm extends Component {
   }
 
   componentDidMount() {
-    const clubs = this.props.clubs.map(club => ({
-      value: club.id,
-      optionLabel: club.name
-    }));
-    const spotsByClub = this.props.spots.filter(
-      spot => spot.club_id === this.state.club.value
-    );
-    console.log(spotsByClub);
-    const spots = spotsByClub.map(spot => ({
+    const spots = this.props.spots.map(spot => ({
       value: spot.id,
       optionLabel: spot.name
     }));
-    this.setState({ clubs, spots });
+    this.setState({ spots });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -90,9 +82,9 @@ export default class EventsForm extends Component {
       event_type_id.value = this.props.eventSelected.event_type_id;
       event_type_id.modified = false;
       event_type_id.originalValue = this.props.eventSelected.event_type_id;
-      club.value = this.props.eventSelected.club_id;
+      club.value = 0;
       club.modified = false;
-      club.originalValue = this.props.eventSelected.club_id;
+      club.originalValue = 0;
       spot.value = this.props.eventSelected.spot_id;
       spot.modified = false;
       spot.originalValue = this.props.eventSelected.spot_id;
@@ -135,14 +127,7 @@ export default class EventsForm extends Component {
   }
 
   handleChangeClub({ target: { value } }) {
-    const spotsByClub = this.props.spots.filter(spot => spot.club_id == value);
-    const spots = spotsByClub.map(spot => ({
-      value: spot.id,
-      optionLabel: spot.name
-    }));
     this.setState(prevState => {
-      prevState.club.value = value;
-      prevState.club.modified = !(value == prevState.club.originalValue);
       prevState.spot.value = spots[0].value;
       return {
         club: prevState.club,
@@ -218,19 +203,6 @@ export default class EventsForm extends Component {
       case 1:
         return (
           <div>
-            <div className="row">
-              <div className="col-lg-12">
-                <Select
-                  selectedValue={this.state.club.value}
-                  handleChange={this.handleChangeClub}
-                  modified={this.state.club.modified}
-                  id="club"
-                  name="club"
-                  options={this.state.clubs}
-                  defaultOption={"Select a Club"}
-                />
-              </div>
-            </div>
             <div className="row">
               <div className="col-lg-12">
                 <Select
