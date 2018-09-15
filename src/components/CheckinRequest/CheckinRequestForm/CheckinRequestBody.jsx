@@ -59,7 +59,7 @@ export default class CheckinRequestBody extends Component {
               refreshEvents={refreshEvents}
               checkinSpotName={checkinRequest.spot.name}
               checkinLocal={checkinRequest.local_date}
-              checkinClub={checkinRequest.club.id}
+              checkinClub={0}
               checkinSpot={checkinRequest.spot.id}
               clubs={clubs}
               spots={spots}

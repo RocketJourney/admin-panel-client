@@ -42,7 +42,7 @@ const StravaRun = ({
           </p>
           <div className={styles.insertedAtWrapper}>
             <p className={styles.date}>{insertedAt}</p>
-            {manuallyAdded === true && <span className={styles.manual}>M</span>}
+            {/* {manuallyAdded === true && <span className={styles.manual}>M</span>} */}
           </div>
           <img
             className="strava"
