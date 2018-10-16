@@ -17,58 +17,12 @@ export default class CheckinRequest extends Component {
 
     this.state = {
       checkinRequests: [],
-      clubs: [],
-      spots: [],
-      fetchingData: true,
-      error: false
+      fetchingData: true
     };
-    this.getClubsAndSpots = this.getClubsAndSpots.bind(this);
-    this.openNextCheckin = this.openNextCheckin.bind(this);
-    setTimeZone();
-  }
-
-  componentDidMount() {
-    this.getClubsAndSpots();
-    request("/checkin-requests")
-      .then(res =>
-        this.setState({ checkinRequests: res.data.data, fetchingData: false })
-      )
-      .catch(err => {
-        if (err.response.status === 401) {
-          logOut();
-          this.props.history.replace("/login");
-        } else {
-          this.setState({ error: true });
-        }
-      });
-  }
-
-  getClubsAndSpots() {
-    request("/events/clubs/")
-      .then(res =>
-        this.setState({
-          clubs: res.data.data.clubs,
-          spots: res.data.data.spots
-        })
-      )
-      .catch(err => console.warn(err));
-  }
-
-  openNextCheckin(prevIndex, prevModalId, prevCheckinId) {
-    $(prevModalId).modal("hide");
-    const checkins = this.state.checkinRequests.filter(checkin => {
-      return checkin.id !== prevCheckinId;
-    });
-    this.setState({ checkinRequests: checkins });
-    if (checkins.length > 0) {
-      console.log(`#${checkins[0].id}`);
-      $(`#checkin-${checkins[0].id}`).click();
-      // $(`#${checkins[0].id}`).modal("show");
-    }
   }
 
   render() {
-    const { checkinRequests, clubs, spots, fetchingData } = this.state;
+    const { fetchingData } = this.state;
 
     if (fetchingData) {
       return <img className={styles.loader} src={loader} alt="loader" />;
