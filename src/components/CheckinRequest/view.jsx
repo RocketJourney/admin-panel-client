@@ -13,6 +13,7 @@ import SectionTitle from "../SectionTitle";
 import styles from "./styles.less";
 
 const View = ({
+  checkInIdUpdating,
   checkinRequests,
   updateResult,
   updateResultClass,
@@ -54,6 +55,7 @@ const View = ({
                     <Td>{checkinRequest.local_date}</Td>
                     <Td>
                       <Button
+                        loading={checkInIdUpdating === checkinRequest.id}
                         color="yellow"
                         size="small"
                         onClick={() => updateCheckInRequest(checkinRequest.id)}

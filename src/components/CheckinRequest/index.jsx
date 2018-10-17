@@ -17,7 +17,8 @@ export default class CheckinRequest extends Component {
       checkinRequests: [],
       fetchingData: true,
       updateResult: "",
-      updateResultClass: "normal"
+      updateResultClass: "normal",
+      checkInIdUpdating: 0
     };
     this.fetchCheckInRequests = this.fetchCheckInRequests.bind(this);
     this.updateCheckInRequest = this.updateCheckInRequest.bind(this);
@@ -44,10 +45,15 @@ export default class CheckinRequest extends Component {
   }
 
   updateCheckInRequest(id) {
+    this.setState({ checkInIdUpdating: id });
     request(`/checkin-requests/${id}`, { method: "PATCH" })
       .then(res => {
         this.setState(
-          { updateResult: res.data.message, updateResultClass: "success" },
+          {
+            updateResult: res.data.message,
+            updateResultClass: "success",
+            checkInIdUpdating: 0
+          },
           () => this.removeCheckInRequest(id)
         );
       })
@@ -55,7 +61,8 @@ export default class CheckinRequest extends Component {
         this.setState(
           {
             updateResult: err.response.data.reason,
-            updateResultClass: "normal"
+            updateResultClass: "normal",
+            checkInIdUpdating: 0
           },
           () => this.removeCheckInRequest(id)
         );
@@ -71,6 +78,7 @@ export default class CheckinRequest extends Component {
 
   render() {
     const {
+      checkInIdUpdating,
       fetchingData,
       checkinRequests,
       updateResult,
@@ -82,6 +90,7 @@ export default class CheckinRequest extends Component {
     }
     return (
       <View
+        checkInIdUpdating={checkInIdUpdating}
         updateResult={updateResult}
         updateResultClass={updateResultClass}
         checkinRequests={checkinRequests}
