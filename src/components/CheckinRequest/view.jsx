@@ -12,12 +12,20 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = ({ checkinRequests, updateResult, updateCheckInRequest }) => {
+const View = ({
+  checkinRequests,
+  updateResult,
+  updateResultClass,
+  updateCheckInRequest
+}) => {
   return (
     <div id="checkin-request" className={styles.view}>
       <div className="row">
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div className="col-12 col-sm-12 col-md-10 col-lg-10">
           <SectionTitle>Check-in Requests</SectionTitle>
+        </div>
+        <div className="col-12 col-sm-12 col-md-2 col-lg-2">
+          <p className={styles[updateResultClass]}>{updateResult}</p>
         </div>
       </div>
       <div className="row">

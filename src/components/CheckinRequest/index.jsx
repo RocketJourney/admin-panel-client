@@ -16,10 +16,12 @@ export default class CheckinRequest extends Component {
     this.state = {
       checkinRequests: [],
       fetchingData: true,
-      updateResult: ""
+      updateResult: "",
+      updateResultClass: "normal"
     };
     this.fetchCheckInRequests = this.fetchCheckInRequests.bind(this);
     this.updateCheckInRequest = this.updateCheckInRequest.bind(this);
+    this.removeCheckInRequest = this.removeCheckInRequest.bind(this);
   }
 
   componentDidMount() {
@@ -42,16 +44,29 @@ export default class CheckinRequest extends Component {
   }
 
   updateCheckInRequest(id) {
-    request(`/checkin-requests/${id}`)
+    request(`/checkin-requests/${id}`, { method: "PATCH" })
       .then(res => {
-        this.setState({ updateResult: res.data.message });
+        this.setState(
+          { updateResult: res.data.message, updateResultClass: "success" },
+          () => this.removeCheckInRequest(id)
+        );
       })
       .catch(err => {
-        console.log("====================================");
-        console.log(err);
-        console.log("====================================");
-        this.setState({ updateResult: err.data.reason });
+        this.setState(
+          {
+            updateResult: err.response.data.reason,
+            updateResultClass: "normal"
+          },
+          () => this.removeCheckInRequest(id)
+        );
       });
+  }
+
+  removeCheckInRequest(id) {
+    const checkinRequests = this.state.checkinRequests.filter(
+      checkIn => checkIn.id !== id
+    );
+    this.setState({ checkinRequests });
   }
 
   render() {
@@ -59,7 +74,7 @@ export default class CheckinRequest extends Component {
       fetchingData,
       checkinRequests,
       updateResult,
-      updateCheckInRequest
+      updateResultClass
     } = this.state;
 
     if (fetchingData) {
@@ -68,8 +83,9 @@ export default class CheckinRequest extends Component {
     return (
       <View
         updateResult={updateResult}
+        updateResultClass={updateResultClass}
         checkinRequests={checkinRequests}
-        updateCheckInRequest={updateCheckInRequest}
+        updateCheckInRequest={this.updateCheckInRequest}
       />
     );
   }
