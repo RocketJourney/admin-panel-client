@@ -2,7 +2,7 @@ import React from "react";
 
 import { parseHour } from "../../helpers/utils";
 
-import CheckinRequestForm from "./CheckinRequestForm";
+import Button from "../Button";
 import Table from "../Table";
 import Thead from "../Table/Thead";
 import Tbody from "../Table/Tbody";
@@ -12,7 +12,7 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = ({ checkinRequests, clubs, spots, openNextCheckin }) => {
+const View = ({ checkinRequests }) => {
   return (
     <div id="checkin-request" className={styles.view}>
       <div className="row">
@@ -40,18 +40,14 @@ const View = ({ checkinRequests, clubs, spots, openNextCheckin }) => {
                     <Td color="gray">
                       {parseHour(checkinRequest.inserted_at)}
                     </Td>
-                    <Td>{checkinRequest.name}</Td>
+                    <Td>{checkinRequest.location_name}</Td>
                     <Td>{checkinRequest.reason}</Td>
                     <Td>{checkinRequest.user_name}</Td>
                     <Td>{checkinRequest.local_date}</Td>
                     <Td>
-                      <CheckinRequestForm
-                        checkinIndex={index}
-                        checkinRequest={checkinRequest}
-                        clubs={clubs}
-                        openNextCheckin={openNextCheckin}
-                        spots={spots}
-                      />
+                      <Button color="yellow" size="small">
+                        Resolve
+                      </Button>
                     </Td>
                   </tr>
                 ))}

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 import View from "./view";
 
 import request from "../../helpers/request";
-import { setTimeZone } from "../../helpers/utils";
 import { logOut } from "../../helpers/auth";
 import loader from "../../img/spinner-100px.gif";
 import styles from "./styles.less";
@@ -19,21 +17,34 @@ export default class CheckinRequest extends Component {
       checkinRequests: [],
       fetchingData: true
     };
+    this.fetchCheckInRequests = this.fetchCheckInRequests.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchCheckInRequests();
+  }
+
+  fetchCheckInRequests() {
+    request("/checkin-requests")
+      .then(res => {
+        this.setState({ checkinRequests: res.data.data, fetchingData: false });
+      })
+      .catch(err => {
+        if (err.response.status === 401) {
+          logOut();
+          this.props.history.replace("/login");
+        } else {
+          this.setState({ error: true });
+        }
+      });
   }
 
   render() {
-    const { fetchingData } = this.state;
+    const { fetchingData, checkinRequests } = this.state;
 
     if (fetchingData) {
       return <img className={styles.loader} src={loader} alt="loader" />;
     }
-    return (
-      <View
-        checkinRequests={checkinRequests}
-        clubs={clubs}
-        openNextCheckin={this.openNextCheckin}
-        spots={spots}
-      />
-    );
+    return <View checkinRequests={checkinRequests} />;
   }
 }
