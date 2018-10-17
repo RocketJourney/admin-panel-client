@@ -12,7 +12,7 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = ({ checkinRequests }) => {
+const View = ({ checkinRequests, updateResult, updateCheckInRequest }) => {
   return (
     <div id="checkin-request" className={styles.view}>
       <div className="row">
@@ -45,7 +45,11 @@ const View = ({ checkinRequests }) => {
                     <Td>{checkinRequest.user_name}</Td>
                     <Td>{checkinRequest.local_date}</Td>
                     <Td>
-                      <Button color="yellow" size="small">
+                      <Button
+                        color="yellow"
+                        size="small"
+                        onClick={() => updateCheckInRequest(checkinRequest.id)}
+                      >
                         Resolve
                       </Button>
                     </Td>

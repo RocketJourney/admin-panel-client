@@ -15,9 +15,11 @@ export default class CheckinRequest extends Component {
 
     this.state = {
       checkinRequests: [],
-      fetchingData: true
+      fetchingData: true,
+      updateResult: ""
     };
     this.fetchCheckInRequests = this.fetchCheckInRequests.bind(this);
+    this.updateCheckInRequest = this.updateCheckInRequest.bind(this);
   }
 
   componentDidMount() {
@@ -39,12 +41,36 @@ export default class CheckinRequest extends Component {
       });
   }
 
+  updateCheckInRequest(id) {
+    request(`/checkin-requests/${id}`)
+      .then(res => {
+        this.setState({ updateResult: res.data.message });
+      })
+      .catch(err => {
+        console.log("====================================");
+        console.log(err);
+        console.log("====================================");
+        this.setState({ updateResult: err.data.reason });
+      });
+  }
+
   render() {
-    const { fetchingData, checkinRequests } = this.state;
+    const {
+      fetchingData,
+      checkinRequests,
+      updateResult,
+      updateCheckInRequest
+    } = this.state;
 
     if (fetchingData) {
       return <img className={styles.loader} src={loader} alt="loader" />;
     }
-    return <View checkinRequests={checkinRequests} />;
+    return (
+      <View
+        updateResult={updateResult}
+        checkinRequests={checkinRequests}
+        updateCheckInRequest={updateCheckInRequest}
+      />
+    );
   }
 }
