@@ -2,7 +2,7 @@ import React from "react";
 
 import { parseHour } from "../../helpers/utils";
 
-import CheckinRequestForm from "./CheckinRequestForm";
+import Button from "../Button";
 import Table from "../Table";
 import Thead from "../Table/Thead";
 import Tbody from "../Table/Tbody";
@@ -12,12 +12,21 @@ import SectionTitle from "../SectionTitle";
 
 import styles from "./styles.less";
 
-const View = ({ checkinRequests, clubs, spots, openNextCheckin }) => {
+const View = ({
+  checkInIdUpdating,
+  checkinRequests,
+  updateResult,
+  updateResultClass,
+  updateCheckInRequest
+}) => {
   return (
     <div id="checkin-request" className={styles.view}>
       <div className="row">
-        <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div className="col-12 col-sm-12 col-md-10 col-lg-10">
           <SectionTitle>Check-in Requests</SectionTitle>
+        </div>
+        <div className="col-12 col-sm-12 col-md-2 col-lg-2">
+          <p className={styles[updateResultClass]}>{updateResult}</p>
         </div>
       </div>
       <div className="row">
@@ -40,18 +49,19 @@ const View = ({ checkinRequests, clubs, spots, openNextCheckin }) => {
                     <Td color="gray">
                       {parseHour(checkinRequest.inserted_at)}
                     </Td>
-                    <Td>{checkinRequest.name}</Td>
+                    <Td>{checkinRequest.location_name}</Td>
                     <Td>{checkinRequest.reason}</Td>
                     <Td>{checkinRequest.user_name}</Td>
                     <Td>{checkinRequest.local_date}</Td>
                     <Td>
-                      <CheckinRequestForm
-                        checkinIndex={index}
-                        checkinRequest={checkinRequest}
-                        clubs={clubs}
-                        openNextCheckin={openNextCheckin}
-                        spots={spots}
-                      />
+                      <Button
+                        loading={checkInIdUpdating === checkinRequest.id}
+                        color="yellow"
+                        size="small"
+                        onClick={() => updateCheckInRequest(checkinRequest.id)}
+                      >
+                        Resolve
+                      </Button>
                     </Td>
                   </tr>
                 ))}
