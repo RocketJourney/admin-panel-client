@@ -45,7 +45,7 @@ export default class CheckinRequest extends Component {
   }
 
   updateCheckInRequest(id) {
-    this.setState({ checkInIdUpdating: id });
+    this.setState({ checkInIdUpdating: id, updateResult: "" });
     request(`/checkin-requests/${id}`, { method: "PATCH" })
       .then(res => {
         this.setState(
