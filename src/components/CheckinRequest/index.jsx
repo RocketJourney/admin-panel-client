@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 import View from "./view";
 
 import request from "../../helpers/request";
-import { setTimeZone } from "../../helpers/utils";
 import { logOut } from "../../helpers/auth";
 import loader from "../../img/spinner-100px.gif";
 import styles from "./styles.less";
@@ -17,22 +15,25 @@ export default class CheckinRequest extends Component {
 
     this.state = {
       checkinRequests: [],
-      clubs: [],
-      spots: [],
       fetchingData: true,
-      error: false
+      updateResult: "",
+      updateResultClass: "normal",
+      checkInIdUpdating: 0
     };
-    this.getClubsAndSpots = this.getClubsAndSpots.bind(this);
-    this.openNextCheckin = this.openNextCheckin.bind(this);
-    setTimeZone();
+    this.fetchCheckInRequests = this.fetchCheckInRequests.bind(this);
+    this.updateCheckInRequest = this.updateCheckInRequest.bind(this);
+    this.removeCheckInRequest = this.removeCheckInRequest.bind(this);
   }
 
   componentDidMount() {
-    this.getClubsAndSpots();
+    this.fetchCheckInRequests();
+  }
+
+  fetchCheckInRequests() {
     request("/checkin-requests")
-      .then(res =>
-        this.setState({ checkinRequests: res.data.data, fetchingData: false })
-      )
+      .then(res => {
+        this.setState({ checkinRequests: res.data.data, fetchingData: false });
+      })
       .catch(err => {
         if (err.response.status === 401) {
           logOut();
@@ -43,42 +44,57 @@ export default class CheckinRequest extends Component {
       });
   }
 
-  getClubsAndSpots() {
-    request("/events/clubs/")
-      .then(res =>
-        this.setState({
-          clubs: res.data.data.clubs,
-          spots: res.data.data.spots
-        })
-      )
-      .catch(err => console.warn(err));
+  updateCheckInRequest(id) {
+    this.setState({ checkInIdUpdating: id, updateResult: "" });
+    request(`/checkin-requests/${id}`, { method: "PATCH" })
+      .then(res => {
+        this.setState(
+          {
+            updateResult: res.data.message,
+            updateResultClass: "success",
+            checkInIdUpdating: 0
+          },
+          () => this.removeCheckInRequest(id)
+        );
+      })
+      .catch(err => {
+        this.setState(
+          {
+            updateResult: err.response.data.reason,
+            updateResultClass: "normal",
+            checkInIdUpdating: 0
+          },
+          () => this.removeCheckInRequest(id)
+        );
+      });
   }
 
-  openNextCheckin(prevIndex, prevModalId, prevCheckinId) {
-    $(prevModalId).modal("hide");
-    const checkins = this.state.checkinRequests.filter(checkin => {
-      return checkin.id !== prevCheckinId;
-    });
-    this.setState({ checkinRequests: checkins });
-    if (checkins.length > 0) {
-      console.log(`#${checkins[0].id}`);
-      $(`#checkin-${checkins[0].id}`).click();
-      // $(`#${checkins[0].id}`).modal("show");
-    }
+  removeCheckInRequest(id) {
+    const checkinRequests = this.state.checkinRequests.filter(
+      checkIn => checkIn.id !== id
+    );
+    this.setState({ checkinRequests });
   }
 
   render() {
-    const { checkinRequests, clubs, spots, fetchingData } = this.state;
+    const {
+      checkInIdUpdating,
+      fetchingData,
+      checkinRequests,
+      updateResult,
+      updateResultClass
+    } = this.state;
 
     if (fetchingData) {
       return <img className={styles.loader} src={loader} alt="loader" />;
     }
     return (
       <View
+        checkInIdUpdating={checkInIdUpdating}
+        updateResult={updateResult}
+        updateResultClass={updateResultClass}
         checkinRequests={checkinRequests}
-        clubs={clubs}
-        openNextCheckin={this.openNextCheckin}
-        spots={spots}
+        updateCheckInRequest={this.updateCheckInRequest}
       />
     );
   }
