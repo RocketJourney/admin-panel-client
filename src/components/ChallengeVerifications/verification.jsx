@@ -49,7 +49,7 @@ class Verification extends Component {
         verification.user_challenge.progress);
     const style = delta < 0 ? "green" : "red";
     const delta_img = delta < 0 ? DELTA_DOWN : DELTA_UP;
-    delta = delta < 0 ? delta : delta * -1;
+    delta = delta > 0 ? delta : delta * -1;
 
     return [delta, style, delta_img];
   }
