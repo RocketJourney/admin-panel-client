@@ -143,12 +143,15 @@ class Verification extends Component {
                   &nbsp;
                   <span className={styles["value-system"]}>{unit_system}</span>
                 </p>
-                <p className={styles["value-different"]}>
-                  ({value}) &nbsp;
-                  <span className={styles["value-system"]}>
-                    {user_challenge_unit_system}
-                  </span>
-                </p>
+                {verification.unit_system !==
+                  verification.user_challenge.unit_system && (
+                  <p className={styles["value-different"]}>
+                    ({value}) &nbsp;
+                    <span className={styles["value-system"]}>
+                      {user_challenge_unit_system}
+                    </span>
+                  </p>
+                )}
                 <div id="challenge-info" className={styles["challenge-info"]}>
                   <img className={styles.delta} src={delta_img} />
                   <span
