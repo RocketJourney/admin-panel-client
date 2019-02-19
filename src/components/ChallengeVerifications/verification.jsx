@@ -42,9 +42,9 @@ class Verification extends Component {
     }
   }
 
-  get_delta(verification) {
+  get_delta(value, verification) {
     let delta =
-      verification.value -
+      value -
       (verification.user_challenge.initial_metric -
         verification.user_challenge.progress);
     const style = delta < 0 ? "green" : "red";
@@ -85,7 +85,6 @@ class Verification extends Component {
     })
       .then(() => {
         remove_verification(verification.id);
-        alert("aprovado");
       })
       .catch(() => {
         alert("Server Error");
@@ -104,7 +103,6 @@ class Verification extends Component {
     })
       .then(() => {
         remove_verification(verification.id);
-        alert("aprovado");
       })
       .catch(() => {
         alert("Server Error");
@@ -113,8 +111,11 @@ class Verification extends Component {
 
   render() {
     const { verification } = this.props;
-    const [delta, delta_style, delta_img] = this.get_delta(verification);
     const [unit_system, value] = this.get_verification_value(verification);
+    const [delta, delta_style, delta_img] = this.get_delta(value, verification);
+    const user_challenge_unit_system = verification.user_challenge.unit_system
+      ? "kg"
+      : "lb";
     const disabled = this.state.feedback.length ? false : true;
 
     return (
@@ -138,8 +139,15 @@ class Verification extends Component {
             <div id="with-initial-metric">
               <div>
                 <p className={styles.value}>
-                  {value}{" "}
+                  {verification.value}
+                  &nbsp;
                   <span className={styles["value-system"]}>{unit_system}</span>
+                </p>
+                <p className={styles["value-different"]}>
+                  ({value}) &nbsp;
+                  <span className={styles["value-system"]}>
+                    {user_challenge_unit_system}
+                  </span>
                 </p>
                 <div id="challenge-info" className={styles["challenge-info"]}>
                   <img className={styles.delta} src={delta_img} />
@@ -181,7 +189,10 @@ class Verification extends Component {
                   <span className={styles["white-label-bold"]}>
                     {verification.user_challenge.initial_metric}
                   </span>
-                  <span className={styles["white-label"]}> lb</span>
+                  <span className={styles["white-label"]}>
+                    {" "}
+                    {user_challenge_unit_system}
+                  </span>
                 </p>
               </div>
             </div>
