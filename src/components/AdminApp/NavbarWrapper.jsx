@@ -19,7 +19,8 @@ export default class NavbarWrapper extends Component {
       totalCheckInRequests: 0,
       totalFeedback: 0,
       totalLeads: 0,
-      totalClubRequests: 0
+      totalClubRequests: 0,
+      totalVerifications: 0
     };
     this.signOut = this.signOut.bind(this);
   }

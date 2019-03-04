@@ -17,6 +17,7 @@ import ClubRequests from "../ClubRequests";
 import Overview from "../Overview";
 import SpotMonitor from "../SpotMonitor";
 import KPI from "../Kpi";
+import ChallengeVerifications from "../ChallengeVerifications";
 
 import styles from "./styles.less";
 import logo from "../../img/group-copy.svg";
@@ -31,7 +32,8 @@ export default class AdminApp extends Component {
       totalCheckInRequests: 0,
       totalFeedback: 0,
       totalLeads: 0,
-      totalClubRequests: 0
+      totalClubRequests: 0,
+      totalVerifications: 0
     };
     this.getNotifications = this.getNotifications.bind(this);
     this.signOut = this.signOut.bind(this);
@@ -59,7 +61,8 @@ export default class AdminApp extends Component {
           totalCheckInRequests: res.data.data.check_in_requests,
           totalFeedback: res.data.data.feedback,
           totalLeads: res.data.data.leads,
-          totalClubRequests: res.data.data.club_requests
+          totalClubRequests: res.data.data.club_requests,
+          totalVerifications: res.data.data.verifications
         })
       )
       .catch(err => {
@@ -102,6 +105,15 @@ export default class AdminApp extends Component {
             >
               <Link to="/checkin-requests" className="nav-option">
                 Check-in Requests
+              </Link>
+            </NavbarItem>
+            <NavbarItem
+              currentSection={this.props.location.pathname}
+              notification={this.state.totalVerifications}
+              section="/verifications"
+            >
+              <Link to="/verifications" className="nav-option">
+                Challenge Verifications
               </Link>
             </NavbarItem>
             <NavbarItem
@@ -164,6 +176,11 @@ export default class AdminApp extends Component {
             component={props => (
               <CheckinRequest getNotifications={this.getNotifications} />
             )}
+          />
+          <Route
+            exact
+            path="/verifications"
+            component={props => <ChallengeVerifications {...props} />}
           />
           <Route
             exact
