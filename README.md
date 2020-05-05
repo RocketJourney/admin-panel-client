@@ -1,6 +1,4 @@
-# react-boilerplate
-
-Boilerplate for react js projects
+# Admin panel-client
 
 ## Setup
 
