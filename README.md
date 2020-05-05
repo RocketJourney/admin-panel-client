@@ -11,4 +11,28 @@ npm start
 
 This boilerplate uses prettier
 
-## Deployment [TODO]
+## Deployment
+
+Install dependencies with
+
+```sh
+npm install
+```
+
+Build bundle with
+
+```sh
+npm run build
+```
+
+Bundles are generated in folder
+
+```
+~/dist
+```
+
+The server shold point to
+
+```sh
+~/dist/index.html
+```
