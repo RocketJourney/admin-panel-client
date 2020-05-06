@@ -10,7 +10,7 @@ To install dependencies execute:
 $ npm install
 ```
 
-After installing dependencies in presents in package execute the next command to
+After installing dependencies presents in package execute the next command to
 build the files. Building all files will generate an output into dist directory, then you can
 install this directory into any webserver to serve the content.
 
