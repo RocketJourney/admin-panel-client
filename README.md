@@ -1,36 +1,32 @@
 # Admin panel-client
 
-## Setup
+Admin Panel client for AdminPanel project
 
-npm install
-npm start
+Before start ensure you have installed npm and nodejs into your system to deploy.
 
-## Prettier
-
-This boilerplate uses prettier
-
-## Deployment
-
-Install dependencies with
-
-```sh
-npm install
-```
-
-Build bundle with
-
-```sh
-npm run build
-```
-
-Bundles are generated in folder
+To install dependencies execute:
 
 ```
-~/dist
+$ npm install
 ```
 
-The server shold point to
+After installing dependencies in presents in package execute the next command to
+build the files. Building all files will generate an output into dist directory, then you can
+install this directory into any webserver to serve the content.
 
-```sh
-~/dist/index.html
 ```
+$ npm run build
+```
+
+If you want to test you can use locally the next command:
+
+```
+$ npm run start
+```
+
+The above command will start a webpack webserver to serve the content.
+
+NOTES:
+
+- Ensure that the config is set correctly in `src/helpers/request.js`, configure the correct
+  url to connect admin panel backend.
