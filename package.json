@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --env.APP_ENV=dev --open --hot",
+    "build:staging": "webpack --mode production --env.APP_ENV=staging",
+    "build": "webpack --mode production --env.APP_ENV=prod",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "precommit": "pretty-quick --staged"
   },
