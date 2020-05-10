@@ -15,8 +15,8 @@ function request(
   const request = buildRequest(
     method,
     // `http://localhost:4000/api/v1${url}`,
-    // `https://api_admin.testin.space/api/v1${url}`,
-    `https://api-admin.control.center/api/v1${url}`,
+    `https://api_admin.testin.space/api/v1${url}`,
+    // `http://167.172.242.126:8080/api/v1${url}`,
     data,
     headers
   );
