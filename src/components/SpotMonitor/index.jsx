@@ -39,11 +39,11 @@ export default class SpotMonitor extends Component {
         })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          this.setState({ error: true });
+          this.setState({ error: true, isFetchingData: false });
         }
       });
   }
@@ -61,16 +61,23 @@ export default class SpotMonitor extends Component {
         })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          this.setState({ error: true });
+          this.setState({ error: true, isFetchingData: false });
         }
       });
   }
 
   render() {
+    if (this.state.error) {
+      return (
+        <div className={styles.loader}>
+          Failed to load data. Please check your connection and try again.
+        </div>
+      );
+    }
     return (
       <div>
         {this.state.isFetchingData ? (

@@ -35,7 +35,7 @@ export default class ClubRequests extends Component {
         })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
@@ -56,7 +56,7 @@ export default class ClubRequests extends Component {
         })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {

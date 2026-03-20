@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import request from "../../../helpers/request";
+import { logOut } from "../../../helpers/auth";
 
 import CheckinRequestHeader from "./CheckinRequestHeader";
 import CheckinRequestFooter from "./CheckinRequestFooter";
@@ -252,7 +253,7 @@ export default class CheckinRequestForm extends Component {
         this.setState({ events });
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {

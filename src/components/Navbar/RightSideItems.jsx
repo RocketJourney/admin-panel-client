@@ -1,7 +1,7 @@
 import React from "react";
 
 const RightSideItems = ({ children }) => (
-  <ui className="nav navbar-nav navbar-right">{children}</ui>
+  <ul className="nav navbar-nav navbar-right">{children}</ul>
 );
 
 export default RightSideItems;

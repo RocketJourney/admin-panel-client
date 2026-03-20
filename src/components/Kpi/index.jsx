@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 
 import request from "../../helpers/request";
+import { logOut } from "../../helpers/auth";
 import { getDateRangeOfWeek } from "../../helpers/utils";
 
 import Loader from "../Loader";
@@ -82,12 +83,11 @@ class Kpi extends Component {
         })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          alert("Ocurrió un error");
-          this.setState({ error: true });
+          this.setState({ error: true, isFetchingData: false });
         }
       });
   }
@@ -96,12 +96,11 @@ class Kpi extends Component {
     request(`/kpis?week=${week}&year=${year}`)
       .then(res => this.setState({ kpi: res.data.data }))
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          alert("Ocurrió un error");
-          this.setState({ error: true });
+          this.setState({ error: true, isFetchingData: false });
         }
       });
   }
@@ -117,6 +116,13 @@ class Kpi extends Component {
   }
 
   render() {
+    if (this.state.error) {
+      return (
+        <div className={styles.loader}>
+          Failed to load data. Please check your connection and try again.
+        </div>
+      );
+    }
     if (this.state.isFetchingData) {
       return <Loader atl="cargando..." className={styles.loader} />;
     }

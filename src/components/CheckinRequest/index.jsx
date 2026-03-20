@@ -35,11 +35,11 @@ export default class CheckinRequest extends Component {
         this.setState({ checkinRequests: res.data.data, fetchingData: false });
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          this.setState({ error: true });
+          this.setState({ error: true, fetchingData: false });
         }
       });
   }
@@ -58,9 +58,13 @@ export default class CheckinRequest extends Component {
         );
       })
       .catch(err => {
+        const reason =
+          err.response && err.response.data
+            ? err.response.data.reason
+            : "Connection error";
         this.setState(
           {
-            updateResult: err.response.data.reason,
+            updateResult: reason,
             updateResultClass: "normal",
             checkInIdUpdating: 0
           },
@@ -85,6 +89,13 @@ export default class CheckinRequest extends Component {
       updateResultClass
     } = this.state;
 
+    if (this.state.error) {
+      return (
+        <div className={styles.loader}>
+          Failed to load data. Please check your connection and try again.
+        </div>
+      );
+    }
     if (fetchingData) {
       return <img className={styles.loader} src={loader} alt="loader" />;
     }

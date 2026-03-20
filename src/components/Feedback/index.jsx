@@ -27,11 +27,11 @@ export default class Feedback extends Component {
         this.setState({ feedback: res.data.data, isFetchingData: false })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          this.setState({ error: true });
+          this.setState({ error: true, isFetchingData: false });
         }
       });
   }
@@ -51,7 +51,14 @@ export default class Feedback extends Component {
   }
 
   render() {
-    const { isFetchingData, feedback } = this.state;
+    const { isFetchingData, feedback, error } = this.state;
+    if (error) {
+      return (
+        <div className={styles.loader}>
+          Failed to load data. Please check your connection and try again.
+        </div>
+      );
+    }
     if (isFetchingData) {
       return <Loader atl="cargando..." className={styles.loader} />;
     }

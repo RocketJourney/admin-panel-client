@@ -29,12 +29,11 @@ export default class Leads extends Component {
         this.setState({ leads: res.data.data, isFetchingData: false })
       )
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          alert("Ocurrió un error");
-          this.setState({ error: true });
+          this.setState({ error: true, isFetchingData: false });
         }
       });
   }
@@ -66,6 +65,13 @@ export default class Leads extends Component {
 
   render() {
     console.log("render leads");
+    if (this.state.error) {
+      return (
+        <div className={styles.loader}>
+          Failed to load data. Please check your connection and try again.
+        </div>
+      );
+    }
     return (
       <div>
         {this.state.isFetchingData ? (

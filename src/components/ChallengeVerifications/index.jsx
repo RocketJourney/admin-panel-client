@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import View from "./view";
 
 import request from "../../helpers/request";
+import { logOut } from "../../helpers/auth";
 import loader from "../../img/spinner-100px.gif";
 
 class ChallengeVerifications extends Component {
@@ -27,11 +28,11 @@ class ChallengeVerifications extends Component {
         this.setState({ verifications: res.data.data, fetchingData: false });
       })
       .catch(err => {
-        if (err.response.status === 401) {
+        if (err.response && err.response.status === 401) {
           logOut();
           this.props.history.replace("/login");
         } else {
-          this.setState({ error: true });
+          this.setState({ error: true, fetchingData: false });
         }
       });
   }
