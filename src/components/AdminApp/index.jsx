@@ -15,7 +15,6 @@ import Feedback from "../Feedback";
 import Leads from "../Leads";
 import ClubRequests from "../ClubRequests";
 import Overview from "../Overview";
-import SpotMonitor from "../SpotMonitor";
 import KPI from "../Kpi";
 import ChallengeVerifications from "../ChallengeVerifications";
 
@@ -145,14 +144,6 @@ export default class AdminApp extends Component {
             </NavbarItem> */}
             <NavbarItem
               currentSection={this.props.location.pathname}
-              section="/spot-monitor"
-            >
-              <Link to="/spot-monitor" className="nav-option">
-                Spot Monitor
-              </Link>
-            </NavbarItem>
-            <NavbarItem
-              currentSection={this.props.location.pathname}
               section="/kpis"
             >
               <Link to="/kpis" className="nav-option">
@@ -207,7 +198,6 @@ export default class AdminApp extends Component {
             )}
           />
           <Route exact path="/kpis" component={KPI} />
-          <Route exact path="/spot-monitor" component={SpotMonitor} />
           <Route exact path="/" component={Overview} />
         </Switch>
       </Provider>

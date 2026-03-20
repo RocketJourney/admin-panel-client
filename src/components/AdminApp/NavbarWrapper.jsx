@@ -76,14 +76,6 @@ export default class NavbarWrapper extends Component {
               Club Requests
             </Link>
           </NavbarItem>
-          <NavbarItem
-            currentSection={this.props.location.pathname}
-            section="/spot-monitor"
-          >
-            <Link to="/spot-monitor" className="nav-option">
-              Spot Monitor
-            </Link>
-          </NavbarItem>
         </LeftSideItems>
         <RightSideItems>
           <button
